@@ -1,9 +1,10 @@
 package Frame;
 // Make By Bình An || AnLaVN || KatoVN
 
+import static Frame.SignIn.con;
 import Object.*;
-import Processing.Data;
-import static Processing.Data.*;
+import static Processing.LData.*;
+import static Processing.DData.*;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -44,6 +45,11 @@ public class SignUp extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sign Up Form");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         SignUp.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         SignUp.setForeground(new java.awt.Color(102, 102, 255));
@@ -176,7 +182,7 @@ public class SignUp extends javax.swing.JFrame {
                             .addComponent(lblHAA, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(lblSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(57, Short.MAX_VALUE))
+                    .addContainerGap(58, Short.MAX_VALUE))
             );
             BackgroundLayout.setVerticalGroup(
                 BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,12 +242,11 @@ public class SignUp extends javax.swing.JFrame {
         if(Validate()){
             String Username = SHA256(txtUsername.getText());
             String Password = SHA256(String.valueOf(txtPassword.getPassword()));
-            Data.writeUS(new User(Username, Password, txtName.getText(), txtEmail.getText(), ""));
-            mapUS = readAUS();
+            insertUS(new User(Username, Password, txtName.getText(), txtEmail.getText(), ""));
             if(WOptionPaneC("Sign Up successfully !\nSign In with this account ?") == JOptionPane.YES_OPTION){
                 System.out.println("SignUp Successfully.");
-                USERNAME = Username;
-                AChat("SignIn from SignUp form");
+                USERNAME = Username;    readAvatar();
+                AChat("SignIn from SignUp");
                 dispose();
             }
             txtUsername.setText("");
@@ -255,6 +260,14 @@ public class SignUp extends javax.swing.JFrame {
         new SignIn().setVisible(true);
         dispose();
     }//GEN-LAST:event_lblSignInMousePressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try{ con = connectDB(); }
+        catch(Exception e){
+            WOptionPaneM("Error establishing a database connection.\nCheck your connection and try again.");
+            System.exit(0);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -308,7 +321,7 @@ public class SignUp extends javax.swing.JFrame {
         String Email    = txtEmail.getText();
         if(Name.equals("")){            showError("Name cannot be blank. !!!", txtName);        return false;   }else{deleError(txtName);}
         if(Username.equals("")){        showError("Username cannot be blank. !!!", txtUsername);return false;   }else{deleError(txtUsername);}
-        try{readUS(SHA256(Username));   showError("Username is already taken. !!!",txtUsername);return false;   }catch(Exception e){deleError(txtUsername);}
+        try{selectUS(SHA256(Username)); showError("Username is already taken. !!!",txtUsername);return false;   }catch(Exception e){deleError(txtUsername);}
         if(Email.equals("")){           showError("Email cannot be blank. !!!", txtEmail);      return false;   }else{deleError(txtEmail);}
         if(!Email.matches(EMAIL)){      showError("Email address is not valid. !!!",txtEmail);  return false;   }else{deleError(txtEmail);}
         if(Password.equals("")){        showError("Password cannot be blank. !!!",txtPassword); return false;   }else{deleError(txtPassword);}

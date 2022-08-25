@@ -63,7 +63,7 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="Avatar">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImgPanel(user.getAvatar().equals(&quot;&quot;) ? &quot;C:\\Users\\Admin\\Documents\\AChat\\src\\Data\\Picture\\QQ.png&quot; : user.getAvatar(), 500, 500)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImgPanel(AVATAR, 500, 500)"/>
           </AuxValues>
 
           <Layout>

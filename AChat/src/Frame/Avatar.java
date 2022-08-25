@@ -2,7 +2,10 @@ package Frame;
 // Make By Bình An || AnLaVN || KatoVN
 
 import Object.*;
-import static Processing.Data.*;
+import static Processing.LData.*;
+import static Processing.DData.*;
+import static Processing.CData.*;
+import static Frame.AChat.*;
 
 public class Avatar extends javax.swing.JFrame {
 
@@ -15,7 +18,7 @@ public class Avatar extends javax.swing.JFrame {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        Avatar = new ImgPanel(user.getAvatar().equals("") ? "C:\\Users\\Admin\\Documents\\AChat\\src\\Data\\Picture\\QQ.png" : user.getAvatar(), 500, 500);
+        Avatar = new ImgPanel(AVATAR, 500, 500);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Avatar");
@@ -83,7 +86,7 @@ public class Avatar extends javax.swing.JFrame {
             }
         });
     }
-    User user = readUS(USERNAME);
+    User user = selectUS(USERNAME);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Avatar;
     private javax.swing.JPanel Background;

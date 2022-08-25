@@ -1,8 +1,6 @@
 package Object;
 // Make By Bình An || AnLaVN || KatoVN
-
 import java.io.Serializable;
-
 public class User implements Serializable{
     private String Username, Password, Name, Email, Avatar;
     public String getUsername() { return Username;  }

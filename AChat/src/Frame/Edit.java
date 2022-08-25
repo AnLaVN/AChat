@@ -2,7 +2,10 @@ package Frame;
 // Make By Bình An || AnLaVN || KatoVN
 
 import Object.*;
-import static Processing.Data.*;
+import static Processing.LData.*;
+import static Processing.DData.*;
+import static Processing.CData.*;
+import static Frame.AChat.*;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -23,7 +26,7 @@ public class Edit extends javax.swing.JFrame {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        Avatar = new ImgPanel(user.getAvatar().equals("") ? "C:\\Users\\Admin\\Documents\\AChat\\src\\Data\\Picture\\QQ.png" : user.getAvatar(), 100, 100);
+        Avatar = new ImgPanel(AVATAR, 100, 100);
         Images = new IcoPanel("/Data/Icon/Images.png", 30, 30);
         lblName = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
@@ -37,7 +40,7 @@ public class Edit extends javax.swing.JFrame {
         txtNPassword = new javax.swing.JPasswordField();
         chkSeePassword = new javax.swing.JCheckBox();
         btnSave = new com.k33ptoo.components.KButton();
-        Delete = new IcoPanel("/Data/Icon/Delete.png", 40, 40);
+        Delete = new IcoPanel("/Data/Icon/Remove.png", 40, 40);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Account Form");
@@ -154,7 +157,7 @@ public class Edit extends javax.swing.JFrame {
             }
         });
 
-        Delete.setToolTipText("Delete Account");
+        Delete.setToolTipText("Remove Account");
         Delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Delete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -278,11 +281,11 @@ public class Edit extends javax.swing.JFrame {
             if(WOptionPaneC("Update your information ?\nYou will be Sign Out. !!!") == JOptionPane.YES_OPTION){
                 String unform   = txtUsername.getText();                        //username on form
                 String pwform   = String.valueOf(txtNPassword.getPassword());   //password on form
-                String Username = unform.equals("") ? user.getUsername() : SHA256(unform);
-                String Password = pwform.equals("") ? user.getPassword() : SHA256(pwform);
+                String Username = unform.equals("") ? User.getUsername() : SHA256(unform);
+                String Password = pwform.equals("") ? User.getPassword() : SHA256(pwform);
                 String Name     = txtName.getText();
                 String Email    = txtEmail.getText();
-                String Avatar   = Path;
+                String Avatar   = User.getAvatar();
                 updateUS(USERNAME, new User(Username, Password, Name, Email, Avatar));
                 writeLocalUser(new User());
                 System.exit(0);
@@ -296,17 +299,17 @@ public class Edit extends javax.swing.JFrame {
         SelectPic.setFileFilter(BoLoc);
         int response = SelectPic.showOpenDialog(null);
         if(response == JFileChooser.APPROVE_OPTION){
-            Path = SelectPic.getSelectedFile().getAbsolutePath();
-            System.out.println("Avatar Path file: "+Path);
-            user.setAvatar(Path);
-            updateUS(USERNAME, user);
-            WOptionPaneM("Change Avatar Successfully.\nNew Avatar will display in the next SignIn.");
+            String Link = uploadIMG(SelectPic.getSelectedFile().getAbsolutePath());
+            saveAvatar(Link);       AVATAR = "src\\Data\\Picture\\Avatar.png";
+            System.out.println("Avatar link file: " + Link);
+            User.setAvatar(Link);   updateUS(USERNAME, User);
+            WOptionPaneM("Change Avatar Successfully.\nNew Avatar will display after close this form.");
         }
     }//GEN-LAST:event_ImagesMousePressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        txtName.setText(user.getName());
-        txtEmail.setText(user.getEmail());
+        txtName.setText(User.getName());
+        txtEmail.setText(User.getEmail());
     }//GEN-LAST:event_formWindowOpened
 
     private void AvatarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarMousePressed
@@ -316,7 +319,7 @@ public class Edit extends javax.swing.JFrame {
     private void DeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteMousePressed
         if(WOptionPaneC("Are you sure you want delete your account?\nYou can't undo this action") == JOptionPane.YES_OPTION){
             String confirmPass = WOptionI("Enter your Password to confirm deletion.",JOptionPane.WARNING_MESSAGE);
-            if(!confirmPass.equals("") && user.getPassword().equals(SHA256(confirmPass))){
+            if(!confirmPass.equals("") && User.getPassword().equals(SHA256(confirmPass))){
                 deleteUS(USERNAME);
                 System.out.println("Delete Account Successfully.");
                 WOptionPaneM("Your account has been deleted.\nWe're so sad when you're gone.");
@@ -345,8 +348,6 @@ public class Edit extends javax.swing.JFrame {
             }
         });
     }
-    User user = readUS(USERNAME);
-    private String Path = user.getAvatar();
     //User user = readUS("67e571ffc1d92b62295a6f15b6f180996179cf967d75d3cfd2d30d11d2f5ce71");
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -381,12 +382,12 @@ public class Edit extends javax.swing.JFrame {
         String Username = txtUsername.getText();
         String Np       = String.valueOf(txtNPassword.getPassword());
         String Op       = String.valueOf(txtOPassword.getPassword());
-        String Ouser    = user.getPassword();
+        String Ouser    = User.getPassword();
         String Name     = txtName.getText();
         String Email    = txtEmail.getText();
         if(Name.equals(""))         {       showError("Name cannot be blank. !!!", txtName);        return false;   }else{deleError(txtName);}
         if(Username.equals(""))     {       WOptionPaneM("You don't enter a new Username.\nUsername will remain the same.");    }
-        try{readUS(SHA256(Username));       showError("Username is already taken. !!!",txtUsername);return false;   }catch(Exception e){deleError(txtUsername);}
+        try{selectUS(SHA256(Username));     showError("Username is already taken. !!!",txtUsername);return false;   }catch(Exception e){deleError(txtUsername);}
         if(Email.equals(""))        {       showError("Email cannot be blank. !!!", txtEmail);      return false;   }else{deleError(txtEmail);}
         if(!Email.matches(EMAIL))   {       showError("Email address is not valid. !!!", txtEmail); return false;   }else{deleError(txtEmail);}
         if(Op.equals("") && Np.equals("")){ WOptionPaneM("You don't enter a new Password.\nPassword will remain the same.");   }

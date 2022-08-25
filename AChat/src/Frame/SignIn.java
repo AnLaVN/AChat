@@ -2,12 +2,13 @@ package Frame;
 // Make By Bình An || AnLaVN || KatoVN
 
 import Object.User;
-import Processing.Data;
-import static Processing.Data.*;
+import Processing.LData;
+import static Processing.LData.*;
+import static Processing.DData.*;
+import java.sql.*;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
@@ -151,7 +152,7 @@ public class SignIn extends javax.swing.JFrame {
                 .addComponent(SignIn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
                         .addComponent(lblDHAA, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,7 +186,7 @@ public class SignIn extends javax.swing.JFrame {
                     .addComponent(chkRememberMe))
                 .addGap(30, 30, 30)
                 .addComponent(btnSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(20, 20, 20)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDHAA, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -209,6 +210,11 @@ public class SignIn extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         System.out.println("Theme: " + (Theme ? "Dark" : "Light"));
+        try{ con = connectDB(); }
+        catch(Exception e){
+            WOptionPaneM("Error establishing a database connection.\nCheck your connection and try again.");
+            System.exit(0);
+        }
         try{
             localUser = readLocalUser();    //Read value of Local user
             String Username = localUser.getUsername();
@@ -252,6 +258,7 @@ public class SignIn extends javax.swing.JFrame {
     } 
     
     private static User localUser;
+    public static Connection con;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
@@ -271,25 +278,25 @@ public class SignIn extends javax.swing.JFrame {
     
     private boolean SignIn(String Username, String Password){
         System.out.println("SignIn with: \n\tUsername: "+Username+"\n\tPassword: "+Password);
-        for(  Map.Entry<String, String> entry : mapUS.entrySet()  ){  
-            if(entry.getKey().equals(Username) && entry.getValue().equals(Password) && Username.length() > 0 && Password.length() > 0){
+        try{    User user = selectUS(Username);
+            if(user != null && user.getPassword().equals(Password)){
                 if (chkRememberMe.isSelected()) {
                     writeLocalUser(new User(Username, Password, "", "", ""));                 
                     System.out.println("Save User as 'LocalUser.dat'.");
                 }
-                USERNAME = Username;
+                USERNAME = Username; readAvatar();
                 return true;
             }
-        }
+        }catch(Exception e){    System.out.println("That account does not exist. !!!"); }
         return false;
     }
     private void showTheme() {
-        Data.setTheme(Background);  //Data.setTheme(SignIn);
-        Data.setTheme(lblUsername); setTheme(txtUsername);
-        Data.setTheme(lblPassword); txtPassword.setForeground(   Color.decode(Theme ? "#F0F0F0" : "#2C3338") );
-        Data.setTheme(chkRememberMe);
-        Data.setTheme(chkSeePassword);
-        Data.setTheme(lblDHAA);
+        LData.setTheme(Background);  //Data.setTheme(SignIn);
+        LData.setTheme(lblUsername); setTheme(txtUsername);
+        LData.setTheme(lblPassword); txtPassword.setForeground(   Color.decode(Theme ? "#F0F0F0" : "#2C3338") );
+        LData.setTheme(chkRememberMe);
+        LData.setTheme(chkSeePassword);
+        LData.setTheme(lblDHAA);
     }
     private void WOptionPaneM(String Message){
         LookAndFeel previousLF = UIManager.getLookAndFeel();

@@ -155,7 +155,7 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AvatarMousePressed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImgPanel(user.getAvatar().equals(&quot;&quot;) ? &quot;C:\\Users\\Admin\\Documents\\AChat\\src\\Data\\Picture\\QQ.png&quot; : user.getAvatar(), 100, 100)"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImgPanel(AVATAR, 100, 100)"/>
           </AuxValues>
 
           <Layout>
@@ -374,7 +374,7 @@
         </Component>
         <Container class="javax.swing.JPanel" name="Delete">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Delete Account"/>
+            <Property name="toolTipText" type="java.lang.String" value="Remove Account"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
@@ -383,7 +383,7 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DeleteMousePressed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new IcoPanel(&quot;/Data/Icon/Delete.png&quot;, 40, 40);"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new IcoPanel(&quot;/Data/Icon/Remove.png&quot;, 40, 40)"/>
           </AuxValues>
 
           <Layout>

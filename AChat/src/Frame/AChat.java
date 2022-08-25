@@ -2,7 +2,8 @@ package Frame;
 // Make By Bình An || AnLaVN || KatoVN
 
 import Object.*;
-import static Processing.Data.*;
+import static Processing.LData.*;
+import static Processing.DData.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class AChat extends javax.swing.JFrame {
 
         Background = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
-        Avatar = new ImgPanel(user.getAvatar().equals("") ? "C:\\Users\\Admin\\Documents\\AChat\\src\\Data\\Picture\\QQ.png" : user.getAvatar(), 50, 50);
+        Avatar = new ImgPanel(AVATAR, 50, 50);
         lblName = new javax.swing.JLabel();
         Edit = new IcoPanel("/Data/Icon/Edit.png", 30, 30);
         SignOut = new IcoPanel("/Data/Icon/SignOut.png", 30, 30);
@@ -100,8 +101,8 @@ public class AChat extends javax.swing.JFrame {
             .addGroup(HeaderLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(Avatar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -154,7 +155,8 @@ public class AChat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        lblName.setText(user.getName());
+        lblName.setText(User.getName());
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void EditMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditMousePressed
@@ -163,7 +165,7 @@ public class AChat extends javax.swing.JFrame {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                AChat("ReSignIn");
+                AChat("Reload");
                 dispose();
             }
         });
@@ -179,7 +181,6 @@ public class AChat extends javax.swing.JFrame {
         new Avatar().setVisible(Theme);
     }//GEN-LAST:event_AvatarMousePressed
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -195,7 +196,7 @@ public class AChat extends javax.swing.JFrame {
         });
     }
     
-    User user = readUS(USERNAME);
+    public static final User User = selectUS(USERNAME);
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Avatar;
