@@ -1,19 +1,15 @@
 package Frame;
 // Make By Bình An || AnLaVN || KatoVN
 
-import Object.*;
 import static Processing.LData.*;
 import static Processing.DData.*;
 import static Processing.CData.*;
 import static Frame.AChat.*;
+import Object.User;
 import java.awt.Color;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
+import javax.swing.filechooser.*;
 
 public class Edit extends javax.swing.JFrame {
 
@@ -26,24 +22,38 @@ public class Edit extends javax.swing.JFrame {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        Avatar = new ImgPanel(AVATAR, 100, 100);
-        Images = new IcoPanel("/Data/Icon/Images.png", 30, 30);
+        EditLayer = new javax.swing.JLayeredPane();
+        Avatar = new com.AnLa.ImgPanel();
+        icoImage = new com.AnLa.IcoPanel();
+        scpEdit = WINDOWSCROLLPANE;
+        EditZone = new javax.swing.JPanel();
         lblName = new javax.swing.JLabel();
+        Name = new javax.swing.JPanel();
+        icoName = new com.AnLa.IcoPanel();
         txtName = new javax.swing.JTextField();
         lblUsername = new javax.swing.JLabel();
+        Username = new javax.swing.JPanel();
+        icoUsername = new com.AnLa.IcoPanel();
         txtUsername = new javax.swing.JTextField();
-        lblEmaill = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        Email = new javax.swing.JPanel();
+        icoEmail = new com.AnLa.IcoPanel();
         txtEmail = new javax.swing.JTextField();
         lblOPassword = new javax.swing.JLabel();
+        OPassword = new javax.swing.JPanel();
+        icoOP = new com.AnLa.IcoPanel();
         txtOPassword = new javax.swing.JPasswordField();
+        icoSeeOP = new com.AnLa.IcoPanel();
         lblNPassword = new javax.swing.JLabel();
+        NPassword = new javax.swing.JPanel();
+        icoNP = new com.AnLa.IcoPanel();
         txtNPassword = new javax.swing.JPasswordField();
-        chkSeePassword = new javax.swing.JCheckBox();
-        btnSave = new com.k33ptoo.components.KButton();
-        Delete = new IcoPanel("/Data/Icon/Remove.png", 40, 40);
+        icoSeeNP = new com.AnLa.IcoPanel();
+        icoRemove = new com.AnLa.IcoPanel();
+        btnSignIn = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Edit Account Form");
+        setTitle("Edit");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -51,8 +61,10 @@ public class Edit extends javax.swing.JFrame {
             }
         });
 
-        Background.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        EditLayer.setPreferredSize(new java.awt.Dimension(480, 720));
 
+        Avatar.setPic(AVATAR);
+        Avatar.setBackground(new java.awt.Color(153, 153, 255));
         Avatar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Avatar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -71,109 +83,439 @@ public class Edit extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        Images.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Images.addMouseListener(new java.awt.event.MouseAdapter() {
+        icoImage.setPic("/Data/Icon/Images.png");
+        icoImage.setBackground(new java.awt.Color(153, 255, 255));
+        icoImage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icoImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                ImagesMousePressed(evt);
+                icoImageMousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout ImagesLayout = new javax.swing.GroupLayout(Images);
-        Images.setLayout(ImagesLayout);
-        ImagesLayout.setHorizontalGroup(
-            ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout icoImageLayout = new javax.swing.GroupLayout(icoImage);
+        icoImage.setLayout(icoImageLayout);
+        icoImageLayout.setHorizontalGroup(
+            icoImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 30, Short.MAX_VALUE)
         );
-        ImagesLayout.setVerticalGroup(
-            ImagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        icoImageLayout.setVerticalGroup(
+            icoImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 30, Short.MAX_VALUE)
         );
+
+        scpEdit.setBorder(null);
+        scpEdit.setVerticalScrollBar(new combo_suggestion.ScrollBarCustom());
+
+        EditZone.setPreferredSize(new java.awt.Dimension(460, 680));
 
         lblName.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblName.setText("Your Name");
 
+        Name.setBackground(new java.awt.Color(0, 0, 255));
+        Name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        Name.setPreferredSize(new java.awt.Dimension(370, 50));
+
+        icoName.setPic("/Data/Icon/NameUser.png");
+        icoName.setBackground(new java.awt.Color(153, 255, 255));
+
+        javax.swing.GroupLayout icoNameLayout = new javax.swing.GroupLayout(icoName);
+        icoName.setLayout(icoNameLayout);
+        icoNameLayout.setHorizontalGroup(
+            icoNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+        icoNameLayout.setVerticalGroup(
+            icoNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+
         txtName.setBackground(new Color(0, 0, 0, 0));
         txtName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtName.setToolTipText("Enter Your Name");
-        txtName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        txtName.setBorder(null);
+
+        javax.swing.GroupLayout NameLayout = new javax.swing.GroupLayout(Name);
+        Name.setLayout(NameLayout);
+        NameLayout.setHorizontalGroup(
+            NameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NameLayout.createSequentialGroup()
+                .addComponent(icoName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+        );
+        NameLayout.setVerticalGroup(
+            NameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NameLayout.createSequentialGroup()
+                .addGroup(NameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icoName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
 
         lblUsername.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblUsername.setText("New Username");
+        lblUsername.setText("Username");
+
+        Username.setBackground(new java.awt.Color(0, 0, 255));
+        Username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        Username.setPreferredSize(new java.awt.Dimension(370, 50));
+
+        icoUsername.setPic("/Data/Icon/User.png");
+        icoUsername.setBackground(new java.awt.Color(153, 255, 255));
+
+        javax.swing.GroupLayout icoUsernameLayout = new javax.swing.GroupLayout(icoUsername);
+        icoUsername.setLayout(icoUsernameLayout);
+        icoUsernameLayout.setHorizontalGroup(
+            icoUsernameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+        icoUsernameLayout.setVerticalGroup(
+            icoUsernameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
 
         txtUsername.setBackground(new Color(0, 0, 0, 0));
         txtUsername.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtUsername.setToolTipText("Enter New Username");
-        txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        txtUsername.setBorder(null);
         txtUsername.addKeyListener( new KeyAdapter() {public void keyTyped(KeyEvent e) {
             char c = e.getKeyChar();
             if (((c < '0') || (c > '9')) && ((c < 'A') || (c > 'Z')) && ((c < 'a') || (c > 'z')) && (c != KeyEvent.VK_BACK_SPACE)) { e.consume();}
         }});
 
-        lblEmaill.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblEmaill.setText("Contact Email");
+        javax.swing.GroupLayout UsernameLayout = new javax.swing.GroupLayout(Username);
+        Username.setLayout(UsernameLayout);
+        UsernameLayout.setHorizontalGroup(
+            UsernameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UsernameLayout.createSequentialGroup()
+                .addComponent(icoUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        UsernameLayout.setVerticalGroup(
+            UsernameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(UsernameLayout.createSequentialGroup()
+                .addGroup(UsernameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icoUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
+
+        lblEmail.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblEmail.setText("Contact Email");
+
+        Email.setBackground(new java.awt.Color(0, 0, 255));
+        Email.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        Email.setPreferredSize(new java.awt.Dimension(370, 50));
+
+        icoEmail.setPic("/Data/Icon/MailEdit.png");
+        icoEmail.setBackground(new java.awt.Color(153, 255, 255));
+
+        javax.swing.GroupLayout icoEmailLayout = new javax.swing.GroupLayout(icoEmail);
+        icoEmail.setLayout(icoEmailLayout);
+        icoEmailLayout.setHorizontalGroup(
+            icoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+        icoEmailLayout.setVerticalGroup(
+            icoEmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
 
         txtEmail.setBackground(new Color(0, 0, 0, 0));
         txtEmail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtEmail.setToolTipText("Enter Your Email Address");
-        txtEmail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        txtEmail.setBorder(null);
+
+        javax.swing.GroupLayout EmailLayout = new javax.swing.GroupLayout(Email);
+        Email.setLayout(EmailLayout);
+        EmailLayout.setHorizontalGroup(
+            EmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EmailLayout.createSequentialGroup()
+                .addComponent(icoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+        EmailLayout.setVerticalGroup(
+            EmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EmailLayout.createSequentialGroup()
+                .addGroup(EmailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
 
         lblOPassword.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblOPassword.setText("Old Password");
 
+        OPassword.setBackground(new java.awt.Color(0, 0, 255));
+        OPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        OPassword.setPreferredSize(new java.awt.Dimension(370, 50));
+
+        icoOP.setPic("/Data/Icon/Password.png");
+        icoOP.setBackground(new java.awt.Color(153, 255, 255));
+
+        javax.swing.GroupLayout icoOPLayout = new javax.swing.GroupLayout(icoOP);
+        icoOP.setLayout(icoOPLayout);
+        icoOPLayout.setHorizontalGroup(
+            icoOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+        icoOPLayout.setVerticalGroup(
+            icoOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+
         txtOPassword.setBackground(new Color(0, 0, 0, 0));
         txtOPassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtOPassword.setToolTipText("Enter Your Old Password");
-        txtOPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        txtOPassword.setBorder(null);
+
+        icoSeeOP.setPic("/Data/Icon/Eyen't.png");
+        icoSeeOP.setBackground(new java.awt.Color(153, 255, 255));
+        icoSeeOP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icoSeeOP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                icoSeeOPMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout icoSeeOPLayout = new javax.swing.GroupLayout(icoSeeOP);
+        icoSeeOP.setLayout(icoSeeOPLayout);
+        icoSeeOPLayout.setHorizontalGroup(
+            icoSeeOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+        icoSeeOPLayout.setVerticalGroup(
+            icoSeeOPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout OPasswordLayout = new javax.swing.GroupLayout(OPassword);
+        OPassword.setLayout(OPasswordLayout);
+        OPasswordLayout.setHorizontalGroup(
+            OPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OPasswordLayout.createSequentialGroup()
+                .addComponent(icoOP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtOPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addComponent(icoSeeOP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+        OPasswordLayout.setVerticalGroup(
+            OPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OPasswordLayout.createSequentialGroup()
+                .addGroup(OPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icoOP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtOPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(icoSeeOP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
 
         lblNPassword.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblNPassword.setText("New Password");
 
+        NPassword.setBackground(new java.awt.Color(0, 0, 255));
+        NPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        NPassword.setPreferredSize(new java.awt.Dimension(370, 50));
+
+        icoNP.setPic("/Data/Icon/Password.png");
+        icoNP.setBackground(new java.awt.Color(153, 255, 255));
+
+        javax.swing.GroupLayout icoNPLayout = new javax.swing.GroupLayout(icoNP);
+        icoNP.setLayout(icoNPLayout);
+        icoNPLayout.setHorizontalGroup(
+            icoNPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+        icoNPLayout.setVerticalGroup(
+            icoNPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+
         txtNPassword.setBackground(new Color(0, 0, 0, 0));
         txtNPassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtNPassword.setToolTipText("Enter New Password");
-        txtNPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
+        txtNPassword.setBorder(null);
 
-        chkSeePassword.setText("See Password ?");
-        chkSeePassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkSeePasswordActionPerformed(evt);
-            }
-        });
-
-        btnSave.setText("Save");
-        btnSave.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSave.setkBorderRadius(20);
-        btnSave.setkEndColor(new java.awt.Color(0, 188, 212));
-        btnSave.setkHoverEndColor(new Color(0, 188, 212, 155));
-        btnSave.setkHoverForeGround(new java.awt.Color(255, 255, 255));
-        btnSave.setkHoverStartColor(new Color(224, 64, 251, 155));
-        btnSave.setkSelectedColor(new java.awt.Color(255, 0, 0));
-        btnSave.setkStartColor(new java.awt.Color(224, 64, 251));
-        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-
-        Delete.setToolTipText("Remove Account");
-        Delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Delete.addMouseListener(new java.awt.event.MouseAdapter() {
+        icoSeeNP.setPic("/Data/Icon/Eyen't.png");
+        icoSeeNP.setBackground(new java.awt.Color(153, 255, 255));
+        icoSeeNP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icoSeeNP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                DeleteMousePressed(evt);
+                icoSeeNPMousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout DeleteLayout = new javax.swing.GroupLayout(Delete);
-        Delete.setLayout(DeleteLayout);
-        DeleteLayout.setHorizontalGroup(
-            DeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+        javax.swing.GroupLayout icoSeeNPLayout = new javax.swing.GroupLayout(icoSeeNP);
+        icoSeeNP.setLayout(icoSeeNPLayout);
+        icoSeeNPLayout.setHorizontalGroup(
+            icoSeeNPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
         );
-        DeleteLayout.setVerticalGroup(
-            DeleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+        icoSeeNPLayout.setVerticalGroup(
+            icoSeeNPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 45, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout NPasswordLayout = new javax.swing.GroupLayout(NPassword);
+        NPassword.setLayout(NPasswordLayout);
+        NPasswordLayout.setHorizontalGroup(
+            NPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NPasswordLayout.createSequentialGroup()
+                .addComponent(icoNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtNPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addComponent(icoSeeNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+        NPasswordLayout.setVerticalGroup(
+            NPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(NPasswordLayout.createSequentialGroup()
+                .addGroup(NPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icoNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(icoSeeNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5))
+        );
+
+        javax.swing.GroupLayout EditZoneLayout = new javax.swing.GroupLayout(EditZone);
+        EditZone.setLayout(EditZoneLayout);
+        EditZoneLayout.setHorizontalGroup(
+            EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditZoneLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EditZoneLayout.createSequentialGroup()
+                        .addComponent(lblNPassword)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(EditZoneLayout.createSequentialGroup()
+                        .addGroup(EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblName)
+                            .addGroup(EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblOPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(OPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblUsername)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        EditZoneLayout.setVerticalGroup(
+            EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditZoneLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(lblOPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(OPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(lblNPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(NPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        scpEdit.setViewportView(EditZone);
+
+        icoRemove.setPic("/Data/Icon/Remove.png");
+        icoRemove.setBackground(new java.awt.Color(153, 255, 255));
+        icoRemove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icoRemove.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                icoRemoveMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout icoRemoveLayout = new javax.swing.GroupLayout(icoRemove);
+        icoRemove.setLayout(icoRemoveLayout);
+        icoRemoveLayout.setHorizontalGroup(
+            icoRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        icoRemoveLayout.setVerticalGroup(
+            icoRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        btnSignIn.setText("Update");
+        btnSignIn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnSignIn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSignIn.setkBorderRadius(20);
+        btnSignIn.setkEndColor(new java.awt.Color(0, 188, 212));
+        btnSignIn.setkHoverEndColor(new Color(0, 188, 212, 155));
+        btnSignIn.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        btnSignIn.setkHoverStartColor(new Color(224, 64, 251, 155));
+        btnSignIn.setkSelectedColor(new java.awt.Color(255, 0, 0));
+        btnSignIn.setkStartColor(new java.awt.Color(224, 64, 251));
+        btnSignIn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSignIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignInActionPerformed(evt);
+            }
+        });
+
+        EditLayer.setLayer(Avatar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EditLayer.setLayer(icoImage, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EditLayer.setLayer(scpEdit, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EditLayer.setLayer(icoRemove, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EditLayer.setLayer(btnSignIn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout EditLayerLayout = new javax.swing.GroupLayout(EditLayer);
+        EditLayer.setLayout(EditLayerLayout);
+        EditLayerLayout.setHorizontalGroup(
+            EditLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditLayerLayout.createSequentialGroup()
+                .addGroup(EditLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EditLayerLayout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(Avatar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(icoImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(EditLayerLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(icoRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
+                        .addComponent(btnSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayerLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(scpEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        EditLayerLayout.setVerticalGroup(
+            EditLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EditLayerLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(EditLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Avatar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(icoImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(EditLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EditLayerLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(scpEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(55, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayerLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(icoRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
         );
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
@@ -181,155 +523,104 @@ public class Edit extends javax.swing.JFrame {
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addComponent(lblOPassword)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(Avatar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNPassword)
-                            .addComponent(txtOPassword)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                                .addComponent(lblNPassword)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chkSeePassword)
-                                .addGap(8, 8, 8))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
-                                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblName))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUsername)
-                                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(BackgroundLayout.createSequentialGroup()
-                                .addComponent(lblEmaill, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(20, 20, 20))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))))
+                .addComponent(EditLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Images, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Avatar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, 0)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(lblEmaill, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(lblOPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(txtOPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkSeePassword))
-                .addGap(0, 0, 0)
-                .addComponent(txtNPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addComponent(EditLayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void chkSeePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSeePasswordActionPerformed
-        if(chkSeePassword.isSelected()){    txtOPassword.setEchoChar((char) 0);  txtNPassword.setEchoChar((char)0); }
-        else{                               txtOPassword.setEchoChar('*');       txtNPassword.setEchoChar('*');     }
-    }//GEN-LAST:event_chkSeePasswordActionPerformed
+    private void AvatarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarMousePressed
+        new Avatar().setVisible(true);
+    }//GEN-LAST:event_AvatarMousePressed
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if(Validate()){
-            if(WOptionPaneC("Update your information ?\nYou will be Sign Out. !!!") == JOptionPane.YES_OPTION){
-                String unform   = txtUsername.getText();                        //username on form
-                String pwform   = String.valueOf(txtNPassword.getPassword());   //password on form
-                String Username = unform.equals("") ? User.getUsername() : SHA256(unform);
-                String Password = pwform.equals("") ? User.getPassword() : SHA256(pwform);
-                String Name     = txtName.getText();
-                String Email    = txtEmail.getText();
-                String Avatar   = User.getAvatar();
-                updateUS(USERNAME, new User(Username, Password, Name, Email, Avatar));
-                writeLocalUser(new User());
-                System.exit(0);
-            }
-        }
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void ImagesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ImagesMousePressed
+    private void icoImageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icoImageMousePressed
         JFileChooser SelectPic = windowsJFileChooser(new JFileChooser());
         FileFilter BoLoc = new FileNameExtensionFilter("JPEG file","jpg");
         SelectPic.setFileFilter(BoLoc);
         int response = SelectPic.showOpenDialog(null);
         if(response == JFileChooser.APPROVE_OPTION){
+            AVATAR = "src\\Data\\Picture\\"+USERNAME+".png";
+            System.out.println("Avatars are being uploaded, please wait...");
             String Link = uploadIMG(SelectPic.getSelectedFile().getAbsolutePath());
-            saveAvatar(Link);       AVATAR = "src\\Data\\Picture\\Avatar.png";
+            saveAvatar(Link);
             System.out.println("Avatar link file: " + Link);
-            User.setAvatar(Link);   updateUS(USERNAME, User);
-            WOptionPaneM("Change Avatar Successfully.\nNew Avatar will display after close this form.");
+            String userAvatar = User.getAvatar();
+            if(!userAvatar.equals("")){ deleteIMG(userAvatar);  }
+            User.setAvatar(Link);   updateUS(User);
+            WOptionPaneM(P, "Avatar upload Successfully.");
+            Avatar.setPic(AVATAR);
         }
-    }//GEN-LAST:event_ImagesMousePressed
+    }//GEN-LAST:event_icoImageMousePressed
+
+    private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
+        if(Validate()){
+            if(WOptionPaneC(P, "Update your information ?\nYou will be Sign Out. !") == JOptionPane.YES_OPTION){
+                String unform   = txtUsername.getText();                        //username on form
+                String pwform   = String.valueOf(txtNPassword.getPassword());   //password on form
+                String username = unform.equals("") ? User.getUsername() : SHA256(unform);
+                String password = pwform.equals("") ? User.getPassword() : SHA256(pwform);
+                String name     = txtName.getText();
+                String email    = txtEmail.getText();
+                String avatar   = User.getAvatar();
+                updateUS(new User(username, password, name, email, avatar));
+                writeLocalUser(new User());
+                System.exit(0);
+            }
+        }
+    }//GEN-LAST:event_btnSignInActionPerformed
+
+    private void icoRemoveMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icoRemoveMousePressed
+        if(WOptionPaneC(P, "Are you sure you want delete your account?\nYou can't undo this action") == JOptionPane.YES_OPTION){
+            String confirmPass = WOptionI(P, "Enter your Password to confirm deletion.", JOptionPane.WARNING_MESSAGE);
+            if(!confirmPass.equals("") && User.getPassword().equals(SHA256(confirmPass))){
+                String userAva = User.getAvatar();
+                if(!userAva.equals("")){    deleteIMG(userAva); deleAvatar();   }
+                deleteUS(); System.out.println("Delete Account Successfully.");
+                WOptionPaneM(P, "Your account has been deleted.\nWe're so sad when you're gone.");
+            }else{  WOptionPaneM(P, "Incorrect Password. !\nBecause you are doing dangerous action.\nFor safety reasons, we will SignOut you.");  }
+            SignOut();
+        }
+    }//GEN-LAST:event_icoRemoveMousePressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         txtName.setText(User.getName());
         txtEmail.setText(User.getEmail());
     }//GEN-LAST:event_formWindowOpened
 
-    private void AvatarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AvatarMousePressed
-        new Avatar().setVisible(true);
-    }//GEN-LAST:event_AvatarMousePressed
+    private void icoSeeOPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icoSeeOPMousePressed
+        seeOP = !seeOP;
+        if(seeOP)   {   txtOPassword.setEchoChar((char) 0);  icoSeeOP.setPic("/Data/Icon/Eye.png");}
+        else        {   txtOPassword.setEchoChar('*');       icoSeeOP.setPic("/Data/Icon/Eyen't.png");}
+    }//GEN-LAST:event_icoSeeOPMousePressed
 
-    private void DeleteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteMousePressed
-        if(WOptionPaneC("Are you sure you want delete your account?\nYou can't undo this action") == JOptionPane.YES_OPTION){
-            String confirmPass = WOptionI("Enter your Password to confirm deletion.",JOptionPane.WARNING_MESSAGE);
-            if(!confirmPass.equals("") && User.getPassword().equals(SHA256(confirmPass))){
-                deleteUS(USERNAME);
-                System.out.println("Delete Account Successfully.");
-                WOptionPaneM("Your account has been deleted.\nWe're so sad when you're gone.");
-                System.exit(0);
-            }else{
-                WOptionPaneM("Incorrect Password. !!!\nBecause you are doing dangerous action.\nFor safety reasons, we will LogOut you.");
-                SignOut();
-            }
-        }
-    }//GEN-LAST:event_DeleteMousePressed
+    private void icoSeeNPMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icoSeeNPMousePressed
+        seeNP = !seeNP;
+        if(seeNP)   {   txtNPassword.setEchoChar((char) 0);  icoSeeNP.setPic("/Data/Icon/Eye.png");}
+        else        {   txtNPassword.setEchoChar('*');       icoSeeNP.setPic("/Data/Icon/Eyen't.png");}
+    }//GEN-LAST:event_icoSeeNPMousePressed
 
     public static void main(String args[]) {
         try {
@@ -342,101 +633,80 @@ public class Edit extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Edit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Edit().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Edit().setVisible(true);
         });
     }
-    //User user = readUS("67e571ffc1d92b62295a6f15b6f180996179cf967d75d3cfd2d30d11d2f5ce71");
+    
+    private final JComponent P = super.getRootPane();   //parent component
+    private static boolean seeOP = false, seeNP = false;
+    private static final JScrollPane WINDOWSCROLLPANE = windowsScrollPane(new JScrollPane());
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Avatar;
+    private com.AnLa.ImgPanel Avatar;
     private javax.swing.JPanel Background;
-    private javax.swing.JPanel Delete;
-    private javax.swing.JPanel Images;
-    private com.k33ptoo.components.KButton btnSave;
-    private javax.swing.JCheckBox chkSeePassword;
-    private javax.swing.JLabel lblEmaill;
+    private javax.swing.JLayeredPane EditLayer;
+    private javax.swing.JPanel EditZone;
+    private javax.swing.JPanel Email;
+    private javax.swing.JPanel NPassword;
+    private javax.swing.JPanel Name;
+    private javax.swing.JPanel OPassword;
+    private javax.swing.JPanel Username;
+    private com.k33ptoo.components.KButton btnSignIn;
+    private com.AnLa.IcoPanel icoEmail;
+    private com.AnLa.IcoPanel icoImage;
+    private com.AnLa.IcoPanel icoNP;
+    private com.AnLa.IcoPanel icoName;
+    private com.AnLa.IcoPanel icoOP;
+    private com.AnLa.IcoPanel icoRemove;
+    private com.AnLa.IcoPanel icoSeeNP;
+    private com.AnLa.IcoPanel icoSeeOP;
+    private com.AnLa.IcoPanel icoUsername;
+    private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblNPassword;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblOPassword;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JScrollPane scpEdit;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtNPassword;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtOPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-
+    
     private void showTheme() {
-        setTheme(Background);
-        setTheme(Avatar);       setTheme(Images);       setTheme(Delete);
-        setTheme(lblName);      setTheme(txtName);
-        setTheme(lblUsername);  setTheme(txtUsername);
-        setTheme(lblEmaill);    setTheme(txtEmail);     setTheme(chkSeePassword);
-        setTheme(lblOPassword);  txtOPassword.setForeground(   Color.decode(Theme ? "#F0F0F0" : "#2C3338") );
+        setTheme(Background);   setTheme(Avatar);       setTheme(icoImage);     setTheme(icoRemove);
+        setTheme(EditZone);     scpEdit.getVerticalScrollBar().setBackground(Color.decode(Theme ? "#363B41" : "#FFFFFF"));
+        setTheme(lblName);      setTheme(Name);         setTheme(icoName);      setTheme(txtName);
+        setTheme(lblUsername);  setTheme(Username);     setTheme(icoUsername);  setTheme(txtUsername);
+        setTheme(lblEmail);     setTheme(Email);        setTheme(icoEmail);     setTheme(txtEmail);
+        setTheme(lblOPassword); setTheme(OPassword);    setTheme(icoOP);        setTheme(icoSeeOP);
+        txtOPassword.setForeground(   Color.decode(Theme ? "#F0F0F0" : "#2C3338") );
+        setTheme(lblNPassword); setTheme(NPassword);    setTheme(icoNP);        setTheme(icoSeeNP);
         setTheme(lblNPassword);  txtNPassword.setForeground(   Color.decode(Theme ? "#F0F0F0" : "#2C3338") );
     }
     private boolean Validate(){
-        String Username = txtUsername.getText();
+        String username = txtUsername.getText();
         String Np       = String.valueOf(txtNPassword.getPassword());
         String Op       = String.valueOf(txtOPassword.getPassword());
         String Ouser    = User.getPassword();
-        String Name     = txtName.getText();
-        String Email    = txtEmail.getText();
-        if(Name.equals(""))         {       showError("Name cannot be blank. !!!", txtName);        return false;   }else{deleError(txtName);}
-        if(Username.equals(""))     {       WOptionPaneM("You don't enter a new Username.\nUsername will remain the same.");    }
-        try{selectUS(SHA256(Username));     showError("Username is already taken. !!!",txtUsername);return false;   }catch(Exception e){deleError(txtUsername);}
-        if(Email.equals(""))        {       showError("Email cannot be blank. !!!", txtEmail);      return false;   }else{deleError(txtEmail);}
-        if(!Email.matches(EMAIL))   {       showError("Email address is not valid. !!!", txtEmail); return false;   }else{deleError(txtEmail);}
-        if(Op.equals("") && Np.equals("")){ WOptionPaneM("You don't enter a new Password.\nPassword will remain the same.");   }
+        String name     = txtName.getText();
+        String email    = txtEmail.getText();
+        if(name.equals("")              ){  showError(P,"Name cannot be blank. !"                       ,Name,      txtName);   return false; }else{deleError(Name);}
+        if(username.equals("")          ){  WOptionPaneM(P,"You don't enter a new Username.\nUsername will remain the same.");  }
+        try{selectUS(SHA256(username));     showError(P,"Username is already taken. !"                  ,Username, txtUsername);return false; }catch(Exception e){deleError(Username);}
+        icoEmail.setPic("/Data/Icon/MailEdit.png");
+        if(email.equals("")             ){  showError(P,"Email cannot be blank. !"                      ,Email,     txtEmail);  return false; }else{deleError(Email);}
+        if(!email.matches(EMAIL)        ){  showError(P,"Email address is not valid. !"                 ,Email,     txtEmail);  return false; }else{deleError(Email);}
+        icoEmail.setPic("/Data/Icon/MailValid.png");
+        if(Op.equals("")&&Np.equals("") ){  WOptionPaneM(P,"You don't enter a new Password.\nPassword will remain the same.");  }
         else{
-            if(Op.equals(""))       {       showError("Password cannot be changed without Old Password. !!!", txtOPassword);return false;   }else{deleError(txtOPassword);}
-            if(!Ouser.equals(SHA256(Op))) { showError("Old password not match. !!!", txtOPassword);         return false;   }else{deleError(txtOPassword);}
-            if(Np.equals(""))       {       showError("New Password cannot be blank. !!!", txtNPassword);   return false;   }else{deleError(txtNPassword);}
-            if(Ouser.equals(SHA256(Np)))  { showError("New Password cannot be the same as your current. !!!", txtNPassword );return false;  }else{deleError(txtNPassword);}
+            if(Op.equals("")            ){  showError(P,"Password can't be changed without Old Password. !",OPassword,txtOPassword);  return false; }else{deleError(OPassword);}
+            if(!Ouser.equals(SHA256(Op))){  showError(P,"Old password not match. !"                        ,OPassword,txtOPassword);  return false; }else{deleError(OPassword);}
+            if(Np.equals("")            ){  showError(P,"New Password can't be blank. !"                   ,NPassword,txtNPassword);  return false; }else{deleError(NPassword);}
+            if(Ouser.equals(SHA256(Np)) ){  showError(P,"New Password can't be the same as your current. !",NPassword,txtNPassword);  return false; }else{deleError(NPassword);}
         }
         return true;
-    }
-    private void showError(String text, JComponent t){
-        t.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, Color.red));
-        t.requestFocus();
-        WOptionPaneM(text);
-    }
-    private void deleError(JComponent t){
-        t.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
-    }
-    private void WOptionPaneM(String Message){
-        LookAndFeel previousLF = UIManager.getLookAndFeel();
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            JOptionPane.showMessageDialog(this, Message, "Message", 1);
-            UIManager.setLookAndFeel(previousLF);
-        } catch (IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {System.out.println("!!! Error try to change Look and Feel MessageDialog. !!!");}
-    }//Windows Look and Feel of JOptionPane MessageDialog
-    private int WOptionPaneC(String Message){
-        LookAndFeel previousLF = UIManager.getLookAndFeel();
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            int ConfirmDialog = JOptionPane.showConfirmDialog(this, Message, "Confirm", JOptionPane.YES_OPTION);
-            UIManager.setLookAndFeel(previousLF);
-            return ConfirmDialog;
-        } catch (IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {
-            System.out.println("!!! Error try to change Look and Feel ConfirmDialog. !!!");
-            throw new RuntimeException(e);
-        }
-    }//Windows Look and Feel of JOptionPane ConfirmDialog
-    private String WOptionI(String Message, int Option){
-        LookAndFeel previousLF = UIManager.getLookAndFeel();
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            String InputDialog = JOptionPane.showInputDialog(this, Message, "Input", Option);
-            UIManager.setLookAndFeel(previousLF);
-            return InputDialog;
-        } catch (IllegalAccessException | UnsupportedLookAndFeelException | InstantiationException | ClassNotFoundException e) {
-            System.out.println("!!! Error try to change Look and Feel ConfirmDialog. !!!");
-            throw new RuntimeException(e);
-        }
     }
 }
