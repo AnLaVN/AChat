@@ -15,6 +15,7 @@ public class LData {
     public static final String EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     public static boolean Theme = (Boolean) readData("src/Data/AppData/Seting.dat");
     public static String USERNAME = "", AVATAR = "";
+    public static Frame.Popup popup = new Frame.Popup();
     //Theme
     public static void changeValueTheme(){Theme = !Theme; writeData("src/Data/AppData/Seting.dat", Theme);}
     public static void setTheme(javax.swing.JComponent o)       {

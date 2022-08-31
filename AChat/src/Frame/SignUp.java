@@ -373,9 +373,9 @@ public class SignUp extends javax.swing.JFrame {
                             .addGap(20, 20, 20)
                             .addComponent(Toggle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(SignUpLayerLayout.createSequentialGroup()
-                            .addGap(29, 29, 29)
+                            .addGap(30, 30, 30)
                             .addComponent(SignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(31, 31, 31)
+                    .addGap(30, 30, 30)
                     .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(10, 10, 10)
                     .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -431,17 +431,21 @@ public class SignUp extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        if(Validate()){
-            String Username = SHA256(txtUsername.getText());
-            String Password = SHA256(String.valueOf(txtPassword.getPassword()));
-            insertUS(new User(Username, Password, txtName.getText(), txtEmail.getText(), ""));
-            if(WOptionPaneC(P,"Sign Up successfully !\nSign In with this account ?") == JOptionPane.YES_OPTION){
-                System.out.println("SignUp Successfully.");
-                USERNAME = Username;    readAvatar();
-                AChat("SignIn from SignUp");
-                dispose();
+        new Thread(){@Override public void run() {
+            if(Validate()){
+                String Username = SHA256(txtUsername.getText());
+                String Password = SHA256(String.valueOf(txtPassword.getPassword()));
+                PopupOn("/Data/Gif/Up.gif", "Uploading your Infomation...");
+                insertUS(new User(Username, Password, txtName.getText(), txtEmail.getText(), ""));
+                PopupOff();
+                if(WOptionPaneC(P,"Sign Up successfully !\nSign In with this account ?") == JOptionPane.YES_OPTION){
+                    System.out.println("SignUp Successfully.");
+                    USERNAME = Username;    readAvatar();
+                    AChat("SignIn from SignUp");
+                    dispose();
+                }
             }
-        }
+        }}.start();
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void lblSignInMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSignInMousePressed
@@ -532,4 +536,11 @@ public class SignUp extends javax.swing.JFrame {
         if(pw.equals("")){          showError(P,"Password cannot be blank. !",Password, txtPassword);   return false; }else{deleError(Password);}
         return true;
     }
+    private void PopupOn(String file, String text) {
+        popup.setLocationRelativeTo(null);
+        popup.icon.setIcon(new javax.swing.ImageIcon(getClass().getResource(file)));
+        popup.txtNotifi.setText(text);
+        popup.setVisible(true);
+    }
+    private void PopupOff(){    popup.dispose();    }
 }

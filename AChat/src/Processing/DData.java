@@ -6,10 +6,10 @@ import static Processing.LData.USERNAME;
 import java.sql.*;
 
 public class DData {
-    private static final String URL = "jdbc:sqlserver://localhost:1433;DatabaseName=AChatDB;encrypt=true;trustServerCertificate=true";
-    private static final String USERNAMEDB = "sa", PASSWORDDB = "";
-//    private static final String URL = "jdbc:sqlserver://AChatDB.mssql.somee.com;DatabaseName=AChatDB;encrypt=true;trustServerCertificate=true";
-//    private static final String USERNAMEDB = "AnLaVN_SQLLogin_1", PASSWORDDB = "xq9gx9ny7j";
+//    private static final String URL = "jdbc:sqlserver://localhost:1433;DatabaseName=AChatDB;encrypt=true;trustServerCertificate=true";
+//    private static final String USERNAMEDB = "sa", PASSWORDDB = "";
+    private static final String URL = "jdbc:sqlserver://AChatDB.mssql.somee.com;DatabaseName=AChatDB;encrypt=true;trustServerCertificate=true";
+    private static final String USERNAMEDB = "AnLaVN_SQLLogin_1", PASSWORDDB = "xq9gx9ny7j";
     public static Connection con = null; 
     public static void connectDB()                        {
         try{

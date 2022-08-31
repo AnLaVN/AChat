@@ -14,10 +14,6 @@ public class SignIn extends javax.swing.JFrame {
     public SignIn() {
         initComponents();
         showTheme();
-        if(con == null){
-            try{    connectDB();    }
-            catch(Exception e){    WOptionPaneM(P,"Error establishing a database connection.\nCheck your connection and try again.");    }
-        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -296,12 +292,12 @@ public class SignIn extends javax.swing.JFrame {
             .addGroup(SignInLayerLayout.createSequentialGroup()
                 .addGroup(SignInLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SignInLayerLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(30, 30, 30)
                         .addComponent(SignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(SignInLayerLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(Toggle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(80, 80, 80)
+                .addGap(100, 100, 100)
                 .addGroup(SignInLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblWUN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -355,15 +351,20 @@ public class SignIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        System.out.println("Theme: " + (Theme ? "Dark" : "Light"));
-        try{
-            localUser = readLocalUser();    //Read value of Local user
-            String localUsername = localUser.getUsername();
-            if (localUsername != null) {
-                if (SignIn(localUsername, localUser.getPassword())) { AChat("Auto SignIn");   dispose();  }
-                else {  System.out.println("!   Auto SignIn Failed.   !\n\tUser doesn't matches."); }
-            }else {  System.out.println("!   Auto SignIn Failed.   !\n\tDoesn't have any Users."); }
-        }catch(Exception e){System.out.println("!   Can't read Local User.   !\n\tMaybe 'LocalUser.dat' doesn't exists or contains wrong value.\n\tAuto SignIn Failed. Please SignIn manually.");}
+        new Thread(){@Override public void run() {
+            if(con == null){
+                try{PopupOn("/Data/Gif/Load.gif", "Connect to server...");    connectDB();  PopupOff(); }
+                catch(Exception e){    WOptionPaneM(P,"Error establishing a database connection.\nCheck your connection and try again.");   }
+            }
+            try{
+                localUser = readLocalUser();    //Read value of Local user
+                String localUsername = localUser.getUsername();
+                if (localUsername != null) {
+                    if (SignIn(localUsername, localUser.getPassword())) { AChat("Auto SignIn"); dispose();  }
+                    else {  System.out.println("!   Auto SignIn Failed.   !\n\tUser doesn't matches."); }
+                }else {  System.out.println("!   Auto SignIn Failed.   !\n\tDoesn't have any Users."); }
+            }catch(Exception e){System.out.println("!   Can't read Local User.   !\n\tMaybe 'LocalUser.dat' doesn't exists or contains wrong value.\n\tAuto SignIn Failed. Please SignIn manually.");}
+        }}.start();
     }//GEN-LAST:event_formWindowOpened
 
     private void ToggleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ToggleMousePressed
@@ -383,10 +384,16 @@ public class SignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_lblSignUpMousePressed
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
-        String username = SHA256(txtUsername.getText());
-        String password = SHA256(String.valueOf(txtPassword.getPassword()));
-        if(SignIn(username, password)){ AChat("SignIn");    dispose();    }
-        else{System.out.println("SignIn Failed.");  WOptionPaneM(P,"Invalid username or password. !");   }
+        new Thread(){@Override public void run() {
+            String username = SHA256(txtUsername.getText());
+            String password = SHA256(String.valueOf(txtPassword.getPassword()));
+            if(SignIn(username, password)){
+                PopupOn("/Data/Gif/Down.gif","Downloading your Information...");
+                AChat("SignIn");
+                PopupOff();
+                dispose();    
+            }else{System.out.println("SignIn Failed.");  WOptionPaneM(P,"Invalid username or password. !");   }
+        }}.start();
     }//GEN-LAST:event_btnSignInActionPerformed
 
     public static void main(String args[]) {
@@ -429,7 +436,6 @@ public class SignIn extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-
     private boolean SignIn(String Username, String Password){
         System.out.println("SignIn with: \n\tUsername: "+Username+"\n\tPassword: "+Password);
         try{    User user = selectUS(Username);
@@ -438,7 +444,10 @@ public class SignIn extends javax.swing.JFrame {
                     writeLocalUser(new User(Username, Password, "", "", ""));                 
                     System.out.println("Save User as 'LocalUser.dat'.");
                 }
-                USERNAME = Username; AVATAR = "src\\Data\\Picture\\"+USERNAME+".png"; readAvatar();
+                PopupOn("/Data/Gif/Down.gif","Downloading your Information...");
+                USERNAME = Username; AVATAR = "src\\Data\\Picture\\"+USERNAME+".png";
+                readAvatar();
+                PopupOff();
                 return true;
             }
         }catch(Exception e){    System.out.println("\tThat account doesn't exist. !"); }
@@ -451,4 +460,11 @@ public class SignIn extends javax.swing.JFrame {
         setTheme(chkRememberMe);
         setTheme(lblDHAA);
     }
+    private void PopupOn(String file, String text) {
+        popup.setLocationRelativeTo(null);
+        popup.icon.setIcon(new javax.swing.ImageIcon(getClass().getResource(file)));
+        popup.txtNotifi.setText(text);
+        popup.setVisible(true);
+    }
+    private void PopupOff(){    popup.dispose();    }
 }

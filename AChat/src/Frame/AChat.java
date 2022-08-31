@@ -210,8 +210,9 @@ public class AChat extends javax.swing.JFrame {
         frame.setVisible(true);
         frame.addWindowListener(new WindowAdapter() {
             @Override public void windowClosing(WindowEvent e) {
-                AChat("Reload AChat");
-                dispose();
+//                AChat("Reload AChat");
+//                dispose();
+                Avatar.setPic(AVATAR);
             }
         });
     }//GEN-LAST:event_EditMousePressed

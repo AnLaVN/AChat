@@ -387,7 +387,7 @@ public class Edit extends javax.swing.JFrame {
         EditZoneLayout.setHorizontalGroup(
             EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EditZoneLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(40, 40, 40)
                 .addGroup(EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditZoneLayout.createSequentialGroup()
                         .addComponent(lblNPassword)
@@ -562,16 +562,20 @@ public class Edit extends javax.swing.JFrame {
         SelectPic.setFileFilter(BoLoc);
         int response = SelectPic.showOpenDialog(null);
         if(response == JFileChooser.APPROVE_OPTION){
-            AVATAR = "src\\Data\\Picture\\"+USERNAME+".png";
-            System.out.println("Avatars are being uploaded, please wait...");
-            String Link = uploadIMG(SelectPic.getSelectedFile().getAbsolutePath());
-            saveAvatar(Link);
-            System.out.println("Avatar link file: " + Link);
-            String userAvatar = User.getAvatar();
-            if(!userAvatar.equals("")){ deleteIMG(userAvatar);  }
-            User.setAvatar(Link);   updateUS(User);
-            WOptionPaneM(P, "Avatar upload Successfully.");
-            Avatar.setPic(AVATAR);
+            new Thread(){@Override public void run() {
+                PopupOn("/Data/Gif/FileUpload.gif","Uploading your Avatar, please wait...");
+                AVATAR = "src\\Data\\Picture\\"+USERNAME+".png";
+                System.out.println("Avatars are being uploaded, please wait...");
+                String Link = uploadIMG(SelectPic.getSelectedFile().getAbsolutePath());
+                PopupOn("/Data/Gif/Down.gif","Downloading your Avatar to local...");
+                saveAvatar(Link);
+                System.out.println("Avatar link file: " + Link);
+                String userAvatar = User.getAvatar();
+                if(!userAvatar.equals("")){ deleteIMG(userAvatar);  }
+                User.setAvatar(Link);   updateUS(User);
+                Avatar.setPic(AVATAR);
+                PopupOff();
+            }}.start();
         }
     }//GEN-LAST:event_icoImageMousePressed
 
@@ -596,12 +600,19 @@ public class Edit extends javax.swing.JFrame {
         if(WOptionPaneC(P, "Are you sure you want delete your account?\nYou can't undo this action") == JOptionPane.YES_OPTION){
             String confirmPass = WOptionI(P, "Enter your Password to confirm deletion.", JOptionPane.WARNING_MESSAGE);
             if(!confirmPass.equals("") && User.getPassword().equals(SHA256(confirmPass))){
-                String userAva = User.getAvatar();
-                if(!userAva.equals("")){    deleteIMG(userAva); deleAvatar();   }
-                deleteUS(); System.out.println("Delete Account Successfully.");
-                WOptionPaneM(P, "Your account has been deleted.\nWe're so sad when you're gone.");
-            }else{  WOptionPaneM(P, "Incorrect Password. !\nBecause you are doing dangerous action.\nFor safety reasons, we will SignOut you.");  }
-            SignOut();
+                new Thread(){@Override public void run() {
+                    popup = new Popup();
+                    PopupOn("/Data/Gif/Trash.gif","Deleting your Account, please wait...");
+                    String userAva = User.getAvatar();
+                    if(!userAva.equals("")){    deleteIMG(userAva); deleAvatar();   }
+                    deleteUS(); System.out.println("Delete Account Successfully.");
+                    WOptionPaneM(P, "Your account has been deleted.\nWe're so sad when you're gone.");
+                    SignOut();
+                }}.start();
+            }else{
+                WOptionPaneM(P, "Incorrect Password. !\nBecause you are doing dangerous action.\nFor safety reasons, we will SignOut you.");
+                SignOut();
+            }
         }
     }//GEN-LAST:event_icoRemoveMousePressed
 
@@ -709,4 +720,11 @@ public class Edit extends javax.swing.JFrame {
         }
         return true;
     }
+    private void PopupOn(String file, String text) {
+        popup.setLocationRelativeTo(null);
+        popup.icon.setIcon(new javax.swing.ImageIcon(getClass().getResource(file)));
+        popup.txtNotifi.setText(text);
+        popup.setVisible(true);
+    }
+    private void PopupOff(){    popup.dispose();    }
 }

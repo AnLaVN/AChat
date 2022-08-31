@@ -8,7 +8,8 @@ public class Avatar extends javax.swing.JFrame {
     public Avatar() {
         initComponents();
         Avatar.setPic(AVATAR);
-        setTheme(Background); setTheme(Avatar);
+        setTheme(Background); 
+        setTheme(Avatar);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -65,6 +66,7 @@ public class Avatar extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -80,6 +82,7 @@ public class Avatar extends javax.swing.JFrame {
             new Avatar().setVisible(true);
         });
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.AnLa.ImgPanel Avatar;
     private javax.swing.JPanel Background;

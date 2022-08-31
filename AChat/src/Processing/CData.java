@@ -18,7 +18,7 @@ public class CData {
         }
         catch (IOException e) {
             System.out.println("!!! Error try to upload Image to Cloundinary. !!!");
-            throw null;
+            throw new RuntimeException(e);
         }
     }
     public static void deleteIMG(String url){
