@@ -1,8 +1,8 @@
 package Processing; //Processing Local Data
 // Make By Bình An || AnLaVN || KatoVN
 
+import Class.User;
 import Frame.*;
-import Object.*;
 import static Processing.DData.selectUS;
 import java.awt.Color;
 import java.io.*;
@@ -162,6 +162,4 @@ public class LData {
         System.out.println("SignOut Successfully.");
         System.exit(0);
     }  //Sign out AChat
-
-    
 }

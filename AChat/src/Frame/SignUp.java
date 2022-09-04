@@ -1,7 +1,7 @@
 package Frame;
 // Make By Bình An || AnLaVN || KatoVN
 
-import Object.*;
+import Class.User;
 import static Processing.LData.*;
 import static Processing.DData.*;
 import java.awt.Color;
@@ -439,8 +439,9 @@ public class SignUp extends javax.swing.JFrame {
                 insertUS(new User(Username, Password, txtName.getText(), txtEmail.getText(), ""));
                 PopupOff();
                 if(WOptionPaneC(P,"Sign Up successfully !\nSign In with this account ?") == JOptionPane.YES_OPTION){
-                    System.out.println("SignUp Successfully.");
+                    writeLocalUser(new User(Username, Password, "", "", ""));  
                     USERNAME = Username;    readAvatar();
+                    System.out.println("SignUp Successfully.");
                     AChat("SignIn from SignUp");
                     dispose();
                 }

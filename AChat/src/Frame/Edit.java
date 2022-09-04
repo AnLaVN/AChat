@@ -5,7 +5,7 @@ import static Processing.LData.*;
 import static Processing.DData.*;
 import static Processing.CData.*;
 import static Frame.AChat.*;
-import Object.User;
+import Class.User;
 import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
@@ -25,7 +25,7 @@ public class Edit extends javax.swing.JFrame {
         EditLayer = new javax.swing.JLayeredPane();
         Avatar = new com.AnLa.ImgPanel();
         icoImage = new com.AnLa.IcoPanel();
-        scpEdit = WINDOWSCROLLPANE;
+        Scroll = WINDOWSCROLLPANE;
         EditZone = new javax.swing.JPanel();
         lblName = new javax.swing.JLabel();
         Name = new javax.swing.JPanel();
@@ -103,8 +103,8 @@ public class Edit extends javax.swing.JFrame {
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        scpEdit.setBorder(null);
-        scpEdit.setVerticalScrollBar(new combo_suggestion.ScrollBarCustom());
+        Scroll.setBorder(null);
+        Scroll.setVerticalScrollBar(new combo_suggestion.ScrollBarCustom());
 
         EditZone.setPreferredSize(new java.awt.Dimension(460, 680));
 
@@ -432,7 +432,7 @@ public class Edit extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        scpEdit.setViewportView(EditZone);
+        Scroll.setViewportView(EditZone);
 
         icoRemove.setPic("/Data/Icon/Remove.png");
         icoRemove.setBackground(new java.awt.Color(153, 255, 255));
@@ -473,7 +473,7 @@ public class Edit extends javax.swing.JFrame {
 
         EditLayer.setLayer(Avatar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         EditLayer.setLayer(icoImage, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EditLayer.setLayer(scpEdit, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        EditLayer.setLayer(Scroll, javax.swing.JLayeredPane.DEFAULT_LAYER);
         EditLayer.setLayer(icoRemove, javax.swing.JLayeredPane.DEFAULT_LAYER);
         EditLayer.setLayer(btnSignIn, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -496,7 +496,7 @@ public class Edit extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayerLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(scpEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         EditLayerLayout.setVerticalGroup(
             EditLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -508,7 +508,7 @@ public class Edit extends javax.swing.JFrame {
                 .addGroup(EditLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EditLayerLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(scpEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addComponent(btnSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(55, Short.MAX_VALUE))
@@ -662,6 +662,7 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JPanel NPassword;
     private javax.swing.JPanel Name;
     private javax.swing.JPanel OPassword;
+    private javax.swing.JScrollPane Scroll;
     private javax.swing.JPanel Username;
     private com.k33ptoo.components.KButton btnSignIn;
     private com.AnLa.IcoPanel icoEmail;
@@ -678,7 +679,6 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblOPassword;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.JScrollPane scpEdit;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtNPassword;
     private javax.swing.JTextField txtName;
@@ -688,7 +688,7 @@ public class Edit extends javax.swing.JFrame {
     
     private void showTheme() {
         setTheme(Background);   setTheme(Avatar);       setTheme(icoImage);     setTheme(icoRemove);
-        setTheme(EditZone);     scpEdit.getVerticalScrollBar().setBackground(Color.decode(Theme ? "#363B41" : "#FFFFFF"));
+        setTheme(EditZone);     Scroll.getVerticalScrollBar().setBackground(Color.decode(Theme ? "#363B41" : "#FFFFFF"));
         setTheme(lblName);      setTheme(Name);         setTheme(icoName);      setTheme(txtName);
         setTheme(lblUsername);  setTheme(Username);     setTheme(icoUsername);  setTheme(txtUsername);
         setTheme(lblEmail);     setTheme(Email);        setTheme(icoEmail);     setTheme(txtEmail);
