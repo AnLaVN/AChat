@@ -1,7 +1,7 @@
 package Frame;
 // Make By Bình An || AnLaVN || KatoVN
 
-import Class.*;
+import ObjectClass.User;
 import static Processing.DData.*;
 import static Processing.LData.*;
 import java.awt.Color;
@@ -18,8 +18,7 @@ public class AChat extends javax.swing.JFrame {
         initComponents();
         showTheme();
         Scroll.setVisible(false);
-        ChatBoxLayer.setVisible(false);
-        ButtonLayer.setVisible(true);
+        ChatOut("Click the button below to start a new chat !");
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -37,9 +36,9 @@ public class AChat extends javax.swing.JFrame {
         Chat = new javax.swing.JPanel();
         ChatBoxLayer = new javax.swing.JLayeredPane();
         txtChat = new javax.swing.JTextField();
-        icon = new javax.swing.JPanel();
+        icon = new com.AnLa.IcoPanel();
         ButtonLayer = new javax.swing.JLayeredPane();
-        txtLabel = new javax.swing.JLabel();
+        lblStart = new javax.swing.JLabel();
         btnStart = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -189,6 +188,15 @@ public class AChat extends javax.swing.JFrame {
             }
         });
 
+        icon.setPic("/Data/Icon/Like.png");
+        icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icon.setPreferredSize(new java.awt.Dimension(50, 50));
+        icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout iconLayout = new javax.swing.GroupLayout(icon);
         icon.setLayout(iconLayout);
         iconLayout.setHorizontalGroup(
@@ -210,9 +218,9 @@ public class AChat extends javax.swing.JFrame {
             .addGroup(ChatBoxLayerLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(20, 20, 20)
                 .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(10, 10, 10))
         );
         ChatBoxLayerLayout.setVerticalGroup(
             ChatBoxLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,12 +229,12 @@ public class AChat extends javax.swing.JFrame {
                 .addGroup(ChatBoxLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addGap(32, 32, 32))
         );
 
-        txtLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtLabel.setText("Click the button below to start a new chat !");
+        lblStart.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblStart.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblStart.setText("Click the button below to start a new chat !");
 
         btnStart.setText("Start");
         btnStart.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -245,7 +253,7 @@ public class AChat extends javax.swing.JFrame {
             }
         });
 
-        ButtonLayer.setLayer(txtLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ButtonLayer.setLayer(lblStart, javax.swing.JLayeredPane.DEFAULT_LAYER);
         ButtonLayer.setLayer(btnStart, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout ButtonLayerLayout = new javax.swing.GroupLayout(ButtonLayer);
@@ -258,14 +266,14 @@ public class AChat extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(ButtonLayerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                .addComponent(lblStart, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                 .addContainerGap())
         );
         ButtonLayerLayout.setVerticalGroup(
             ButtonLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonLayerLayout.createSequentialGroup()
                 .addContainerGap(10, Short.MAX_VALUE)
-                .addComponent(txtLabel)
+                .addComponent(lblStart)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -358,13 +366,10 @@ public class AChat extends javax.swing.JFrame {
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         Scroll.setVisible(true);
+        icon.setPic("/Data/Icon/Like.png");
         Chat.removeAll();
         preHeight = 0; width = 0; line = 0; X = 0; Y = 0;
-        ButtonLayer.setVisible(false);
-        ChatBoxLayer.setVisible(true);
-        validate();
-        Chat.repaint();
-        
+        ChatIn();
         if(selectID(PortID)){
             System.out.println("Start with role: Client");
             try {
@@ -378,21 +383,21 @@ public class AChat extends javax.swing.JFrame {
                                 String s = dis.readLine();
                                 byte[] arr = s.getBytes("ISO-8859-1");
                                 s = new String(arr, "UTF-8");
-                                addLeftBox(s);
-                            } catch (IOException ex) { ChatOut("Stranger has exited the chat !"); }
-                        }
-                    }});
-                th.start();
-            } catch (IOException ex) {  ex.printStackTrace(); }
-        }
-        else{
-            insertID(PortID);
+                                if(s.equals("!! You like Strangers like you. !!")){addNotifiBox("Stranger like you. !!");}
+                                else{addLeftBox(s);}}
+                            catch (IOException ex) { ChatOut("Stranger has exited the chat !"); break;}}}});
+                th.start();}
+            catch (IOException ex) {  ex.printStackTrace(); }
+        } 
+        else{ new Thread(){@Override public void run() {
+            PopupOn("/Data/Gif/Chat.gif", "Waiting for a Stranger...");
             System.out.println("Start with role: Server");
-            try {            
+            insertID(PortID);
+            try {
                 ServerSocket sv = new ServerSocket(PortID);
                 Socket soc = sv.accept();
+                PopupOff();
                 ps = new PrintStream(soc.getOutputStream());
-                
                 Thread th = new Thread(new ChatThread(soc){
                     @Override public void run() {
                         while (true) {
@@ -400,12 +405,12 @@ public class AChat extends javax.swing.JFrame {
                                 String s = dis.readLine();
                                 byte[] arr = s.getBytes("ISO-8859-1");
                                 s = new String(arr, "UTF-8");
-                                addLeftBox(s);
-                            } catch (IOException ex) { ChatOut("Stranger has exited the chat !"); }
-                        }
-                    }});
-                th.start();
-            } catch (IOException ex) {  ex.printStackTrace(); }
+                                if(s.equals("!! You like Strangers like you. !!")){addNotifiBox("Stranger like you. !!");}
+                                else{addLeftBox(s);}}
+                            catch (IOException ex) { ChatOut("Stranger has exited the chat !"); break;}}}});
+                th.start();}
+            catch (IOException ex) {ex.printStackTrace();}
+            }}.start();
         }
     }//GEN-LAST:event_btnStartActionPerformed
 
@@ -416,6 +421,15 @@ public class AChat extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         deleteID(PortID);
     }//GEN-LAST:event_formWindowClosing
+
+    private void iconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconMousePressed
+        if(!StranLikeU){
+            ps.println("!! You like Strangers like you. !!");
+            addNotifiBox("You like Stranger. !!"); 
+            icon.setPic("/Data/Icon/LikeColor.png");
+        }
+        StranLikeU = true;
+    }//GEN-LAST:event_iconMousePressed
 
     public static void main(String args[]) {
         try {
@@ -433,11 +447,12 @@ public class AChat extends javax.swing.JFrame {
         });
     }
     
-    private int PortID = 1234;
+    private final int PortID = 1234;
     public static final User User = selectUS(USERNAME);
     private final JComponent P = super.getRootPane();   //parent component
     private int preHeight = 0, width, line, X, Y;
     static PrintStream ps;
+    private boolean StranLikeU = false;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane AChatLayer;
@@ -452,17 +467,17 @@ public class AChat extends javax.swing.JFrame {
     private com.AnLa.IcoPanel SignOut;
     private com.AnLa.IcoPanel Toggle;
     private com.k33ptoo.components.KButton btnStart;
-    private javax.swing.JPanel icon;
+    private com.AnLa.IcoPanel icon;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblStart;
     private javax.swing.JTextField txtChat;
-    private javax.swing.JLabel txtLabel;
     // End of variables declaration//GEN-END:variables
 
     private void showTheme(){
         setTheme(Background);
         setTheme(Header);   setTheme(Avatar);   setTheme(lblName);
         setTheme(Toggle);   setTheme(Edit);     setTheme(SignOut);
-        setTheme(txtLabel);     setTheme(txtChat);
+        setTheme(lblStart); setTheme(txtChat);  setTheme(icon);
         setTheme(Chat);     Scroll.getVerticalScrollBar().setBackground(Color.decode(Theme ? "#363B41" : "#FFFFFF"));
     }
     private void Chat(){
@@ -471,12 +486,20 @@ public class AChat extends javax.swing.JFrame {
         addRightBox(chat);
         txtChat.setText("");
     }
+    private void ChatIn(){
+        ButtonLayer.setVisible(false);
+        ChatBoxLayer.setVisible(true);
+        validate();
+        repaint();
+    }
     private void ChatOut(String text){
-        txtLabel.setText(text);
+        lblStart.setText(text);
         ChatBoxLayer.setVisible(false);
         ButtonLayer.setVisible(true);
+        validate();
+        repaint();
     }
-    public void addRightBox(String text)   {
+    private void addRightBox(String text)   {
         com.k33ptoo.components.KGradientPanel cbox = new com.k33ptoo.components.KGradientPanel();
         javax.swing.JTextArea txt = new javax.swing.JTextArea();
         txt.setText(text);
@@ -528,7 +551,7 @@ public class AChat extends javax.swing.JFrame {
         validate();
         repaint();
     }
-    public void addLeftBox(String text)    {
+    private void addLeftBox(String text)    {
         com.k33ptoo.components.KGradientPanel cbox = new com.k33ptoo.components.KGradientPanel();
         javax.swing.JTextArea txt = new javax.swing.JTextArea();
         txt.setText(text);
@@ -579,6 +602,26 @@ public class AChat extends javax.swing.JFrame {
         validate();
         repaint();
     }
+    private void addNotifiBox(String text)  {
+        javax.swing.JLabel Label = new javax.swing.JLabel();
+        Label.setBackground(new Color(0,0,0,0));
+        Label.setFont(new java.awt.Font("Tahoma", 0, 20));
+        Label.setForeground(new java.awt.Color(150, 150, 150));
+        Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Label.setText(text);
+        Y = Y + preHeight + 20;
+        preHeight = 30;
+        Chat.add(Label, new AbsoluteConstraints(0, Y, 485, 30));
+        validate();
+        repaint();
+    }
+    private void PopupOn(String file, String text) {
+        popup.setLocationRelativeTo(null);
+        popup.icon.setIcon(new javax.swing.ImageIcon(getClass().getResource(file)));
+        popup.txtNotifi.setText(text);
+        popup.setVisible(true);
+    }
+    private void PopupOff(){    popup.dispose();    }
 }
 
 abstract class ChatThread implements Runnable {
