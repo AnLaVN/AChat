@@ -5,7 +5,7 @@ import static Processing.LData.*;
 import static Processing.DData.*;
 import static Processing.CData.*;
 import static Frame.AChat.*;
-import Class.User;
+import ObjectClass.User;
 import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
@@ -25,7 +25,7 @@ public class Edit extends javax.swing.JFrame {
         EditLayer = new javax.swing.JLayeredPane();
         Avatar = new com.AnLa.ImgPanel();
         icoImage = new com.AnLa.IcoPanel();
-        Scroll = WINDOWSCROLLPANE;
+        Scroll = new javax.swing.JScrollPane();
         EditZone = new javax.swing.JPanel();
         lblName = new javax.swing.JLabel();
         Name = new javax.swing.JPanel();
@@ -49,7 +49,11 @@ public class Edit extends javax.swing.JFrame {
         icoNP = new com.AnLa.IcoPanel();
         txtNPassword = new javax.swing.JPasswordField();
         icoSeeNP = new com.AnLa.IcoPanel();
+        DangerZone = new javax.swing.JPanel();
         icoRemove = new com.AnLa.IcoPanel();
+        SignOut = new com.AnLa.IcoPanel();
+        lblSignOut = new javax.swing.JLabel();
+        lblRemove = new javax.swing.JLabel();
         btnSignIn = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -106,7 +110,7 @@ public class Edit extends javax.swing.JFrame {
         Scroll.setBorder(null);
         Scroll.setVerticalScrollBar(new combo_suggestion.ScrollBarCustom());
 
-        EditZone.setPreferredSize(new java.awt.Dimension(460, 680));
+        EditZone.setPreferredSize(new java.awt.Dimension(460, 900));
 
         lblName.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblName.setText("Your Name");
@@ -141,7 +145,7 @@ public class Edit extends javax.swing.JFrame {
             .addGroup(NameLayout.createSequentialGroup()
                 .addComponent(icoName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+                .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
         );
         NameLayout.setVerticalGroup(
             NameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +193,7 @@ public class Edit extends javax.swing.JFrame {
             .addGroup(UsernameLayout.createSequentialGroup()
                 .addComponent(icoUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         UsernameLayout.setVerticalGroup(
@@ -234,7 +238,7 @@ public class Edit extends javax.swing.JFrame {
             .addGroup(EmailLayout.createSequentialGroup()
                 .addComponent(icoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         EmailLayout.setVerticalGroup(
@@ -299,7 +303,7 @@ public class Edit extends javax.swing.JFrame {
             .addGroup(OPasswordLayout.createSequentialGroup()
                 .addComponent(icoOP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(txtOPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addComponent(txtOPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addComponent(icoSeeOP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -367,7 +371,7 @@ public class Edit extends javax.swing.JFrame {
             .addGroup(NPasswordLayout.createSequentialGroup()
                 .addComponent(icoNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(txtNPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addComponent(txtNPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addComponent(icoSeeNP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
@@ -382,6 +386,86 @@ public class Edit extends javax.swing.JFrame {
                 .addGap(5, 5, 5))
         );
 
+        DangerZone.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 0, 0)), "Danger Zone", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 24), new java.awt.Color(255, 0, 0))); // NOI18N
+        DangerZone.setPreferredSize(new java.awt.Dimension(402, 185));
+
+        icoRemove.setPic("/Data/Icon/Remove.png");
+        icoRemove.setBackground(new java.awt.Color(153, 255, 255));
+        icoRemove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icoRemove.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                icoRemoveMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout icoRemoveLayout = new javax.swing.GroupLayout(icoRemove);
+        icoRemove.setLayout(icoRemoveLayout);
+        icoRemoveLayout.setHorizontalGroup(
+            icoRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        icoRemoveLayout.setVerticalGroup(
+            icoRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        SignOut.setPic("/Data/Icon/SignOut.png");
+        SignOut.setBackground(new java.awt.Color(153, 255, 255));
+        SignOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SignOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                SignOutMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SignOutLayout = new javax.swing.GroupLayout(SignOut);
+        SignOut.setLayout(SignOutLayout);
+        SignOutLayout.setHorizontalGroup(
+            SignOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        SignOutLayout.setVerticalGroup(
+            SignOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        lblSignOut.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblSignOut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSignOut.setText("Sign Out");
+
+        lblRemove.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lblRemove.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblRemove.setText("Remove Account");
+
+        javax.swing.GroupLayout DangerZoneLayout = new javax.swing.GroupLayout(DangerZone);
+        DangerZone.setLayout(DangerZoneLayout);
+        DangerZoneLayout.setHorizontalGroup(
+            DangerZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DangerZoneLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(DangerZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSignOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(DangerZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(icoRemove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
+        );
+        DangerZoneLayout.setVerticalGroup(
+            DangerZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DangerZoneLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(DangerZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(DangerZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(icoRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout EditZoneLayout = new javax.swing.GroupLayout(EditZone);
         EditZone.setLayout(EditZoneLayout);
         EditZoneLayout.setHorizontalGroup(
@@ -393,18 +477,18 @@ public class Edit extends javax.swing.JFrame {
                         .addComponent(lblNPassword)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(EditZoneLayout.createSequentialGroup()
-                        .addGroup(EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblName)
-                            .addGroup(EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblOPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(OPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblUsername)
-                            .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(DangerZone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                            .addComponent(Email, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                            .addComponent(Username, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                            .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                            .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(OPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                            .addComponent(lblUsername, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
         EditZoneLayout.setVerticalGroup(
             EditZoneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,30 +513,12 @@ public class Edit extends javax.swing.JFrame {
                 .addComponent(lblNPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(NPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(40, 40, 40)
+                .addComponent(DangerZone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
 
         Scroll.setViewportView(EditZone);
-
-        icoRemove.setPic("/Data/Icon/Remove.png");
-        icoRemove.setBackground(new java.awt.Color(153, 255, 255));
-        icoRemove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        icoRemove.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                icoRemoveMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout icoRemoveLayout = new javax.swing.GroupLayout(icoRemove);
-        icoRemove.setLayout(icoRemoveLayout);
-        icoRemoveLayout.setHorizontalGroup(
-            icoRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        icoRemoveLayout.setVerticalGroup(
-            icoRemoveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
 
         btnSignIn.setText("Update");
         btnSignIn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -474,7 +540,6 @@ public class Edit extends javax.swing.JFrame {
         EditLayer.setLayer(Avatar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         EditLayer.setLayer(icoImage, javax.swing.JLayeredPane.DEFAULT_LAYER);
         EditLayer.setLayer(Scroll, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        EditLayer.setLayer(icoRemove, javax.swing.JLayeredPane.DEFAULT_LAYER);
         EditLayer.setLayer(btnSignIn, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout EditLayerLayout = new javax.swing.GroupLayout(EditLayer);
@@ -489,9 +554,7 @@ public class Edit extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(icoImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(EditLayerLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(icoRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
+                        .addGap(147, 147, 147)
                         .addComponent(btnSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayerLayout.createSequentialGroup()
@@ -505,17 +568,11 @@ public class Edit extends javax.swing.JFrame {
                 .addGroup(EditLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Avatar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(icoImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(EditLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EditLayerLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(Scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(55, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EditLayerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(icoRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
+                .addGap(40, 40, 40)
+                .addComponent(Scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btnSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
@@ -633,6 +690,12 @@ public class Edit extends javax.swing.JFrame {
         else        {   txtNPassword.setEchoChar('*');       icoSeeNP.setPic("/Data/Icon/Eyen't.png");}
     }//GEN-LAST:event_icoSeeNPMousePressed
 
+    private void SignOutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignOutMousePressed
+        if(WOptionPaneC(P,"Are you sure you want SignOut ?\nYour Auto SignIn will be deleted.\nAnd you need SignIn manually in the next time.") == JOptionPane.YES_OPTION){
+            SignOut();
+        }
+    }//GEN-LAST:event_SignOutMousePressed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -651,11 +714,11 @@ public class Edit extends javax.swing.JFrame {
     
     private final JComponent P = super.getRootPane();   //parent component
     private static boolean seeOP = false, seeNP = false;
-    private static final JScrollPane WINDOWSCROLLPANE = windowsScrollPane(new JScrollPane());
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.AnLa.ImgPanel Avatar;
     private javax.swing.JPanel Background;
+    private javax.swing.JPanel DangerZone;
     private javax.swing.JLayeredPane EditLayer;
     private javax.swing.JPanel EditZone;
     private javax.swing.JPanel Email;
@@ -663,6 +726,7 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JPanel Name;
     private javax.swing.JPanel OPassword;
     private javax.swing.JScrollPane Scroll;
+    private com.AnLa.IcoPanel SignOut;
     private javax.swing.JPanel Username;
     private com.k33ptoo.components.KButton btnSignIn;
     private com.AnLa.IcoPanel icoEmail;
@@ -678,6 +742,8 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JLabel lblNPassword;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblOPassword;
+    private javax.swing.JLabel lblRemove;
+    private javax.swing.JLabel lblSignOut;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtNPassword;
@@ -687,7 +753,7 @@ public class Edit extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     private void showTheme() {
-        setTheme(Background);   setTheme(Avatar);       setTheme(icoImage);     setTheme(icoRemove);
+        setTheme(Background);   setTheme(Avatar);       setTheme(icoImage);     
         setTheme(EditZone);     Scroll.getVerticalScrollBar().setBackground(Color.decode(Theme ? "#363B41" : "#FFFFFF"));
         setTheme(lblName);      setTheme(Name);         setTheme(icoName);      setTheme(txtName);
         setTheme(lblUsername);  setTheme(Username);     setTheme(icoUsername);  setTheme(txtUsername);
@@ -696,6 +762,7 @@ public class Edit extends javax.swing.JFrame {
         txtOPassword.setForeground(   Color.decode(Theme ? "#F0F0F0" : "#2C3338") );
         setTheme(lblNPassword); setTheme(NPassword);    setTheme(icoNP);        setTheme(icoSeeNP);
         setTheme(lblNPassword);  txtNPassword.setForeground(   Color.decode(Theme ? "#F0F0F0" : "#2C3338") );
+        setTheme(DangerZone);   setTheme(lblSignOut);   setTheme(SignOut);      setTheme(lblRemove);    setTheme(icoRemove);
     }
     private boolean Validate(){
         String username = txtUsername.getText();

@@ -23,6 +23,7 @@ public class Popup extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         setUndecorated(true);
         setOpacity(0.4F);
+        setPreferredSize(new java.awt.Dimension(480, 750));
         setResizable(false);
 
         Background.setBackground(new Color(0,0,0,0));

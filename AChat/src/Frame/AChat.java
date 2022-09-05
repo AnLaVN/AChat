@@ -17,7 +17,6 @@ public class AChat extends javax.swing.JFrame {
     public AChat() {
         initComponents();
         showTheme();
-        Scroll.setVisible(false);
         ChatOut("Click the button below to start a new chat !");
     }
     @SuppressWarnings("unchecked")
@@ -29,14 +28,14 @@ public class AChat extends javax.swing.JFrame {
         Header = new javax.swing.JPanel();
         lblName = new javax.swing.JLabel();
         Avatar = new com.AnLa.ImgPanel();
-        SignOut = new com.AnLa.IcoPanel();
         Edit = new com.AnLa.IcoPanel();
         Toggle = new com.AnLa.IcoPanel();
+        icoCancel = new com.AnLa.IcoPanel();
         Scroll = new javax.swing.JScrollPane();
         Chat = new javax.swing.JPanel();
         ChatBoxLayer = new javax.swing.JLayeredPane();
         txtChat = new javax.swing.JTextField();
-        icon = new com.AnLa.IcoPanel();
+        iconLike = new com.AnLa.IcoPanel();
         ButtonLayer = new javax.swing.JLayeredPane();
         lblStart = new javax.swing.JLabel();
         btnStart = new com.k33ptoo.components.KButton();
@@ -59,6 +58,7 @@ public class AChat extends javax.swing.JFrame {
 
         Avatar.setPic(AVATAR);
         Avatar.setBackground(new java.awt.Color(153, 153, 255));
+        Avatar.setToolTipText("View Avatar");
         Avatar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Avatar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -77,28 +77,9 @@ public class AChat extends javax.swing.JFrame {
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
-        SignOut.setPic("/Data/Icon/SignOut.png");
-        SignOut.setBackground(new java.awt.Color(153, 255, 255));
-        SignOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        SignOut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                SignOutMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SignOutLayout = new javax.swing.GroupLayout(SignOut);
-        SignOut.setLayout(SignOutLayout);
-        SignOutLayout.setHorizontalGroup(
-            SignOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-        SignOutLayout.setVerticalGroup(
-            SignOutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
         Edit.setPic("/Data/Icon/EditUser.png");
         Edit.setBackground(new java.awt.Color(153, 255, 255));
+        Edit.setToolTipText("Edit Account");
         Edit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Edit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -119,6 +100,7 @@ public class AChat extends javax.swing.JFrame {
 
         Toggle.setPic(Theme ? "/Data/Icon/ToggleOn.png" : "/Data/Icon/ToggleOff.png");
         Toggle.setBackground(new java.awt.Color(153, 255, 255));
+        Toggle.setToolTipText("Change Theme");
         Toggle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Toggle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -137,6 +119,28 @@ public class AChat extends javax.swing.JFrame {
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
+        icoCancel.setPic("/Data/Icon/Cancel.png");
+        icoCancel.setBackground(new java.awt.Color(153, 255, 255));
+        icoCancel.setToolTipText("Cancel Conversation");
+        icoCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icoCancel.setPreferredSize(new java.awt.Dimension(30, 30));
+        icoCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                icoCancelMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout icoCancelLayout = new javax.swing.GroupLayout(icoCancel);
+        icoCancel.setLayout(icoCancelLayout);
+        icoCancelLayout.setHorizontalGroup(
+            icoCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+        icoCancelLayout.setVerticalGroup(
+            icoCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
         Header.setLayout(HeaderLayout);
         HeaderLayout.setHorizontalGroup(
@@ -144,14 +148,14 @@ public class AChat extends javax.swing.JFrame {
             .addGroup(HeaderLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(Avatar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
+                .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(Toggle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addComponent(Edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(SignOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(icoCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
         HeaderLayout.setVerticalGroup(
@@ -161,9 +165,9 @@ public class AChat extends javax.swing.JFrame {
                     .addGroup(HeaderLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(SignOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Edit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Toggle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Toggle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(icoCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(HeaderLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,6 +183,8 @@ public class AChat extends javax.swing.JFrame {
         Chat.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         Scroll.setViewportView(Chat);
 
+        ChatBoxLayer.setPreferredSize(new java.awt.Dimension(480, 110));
+
         txtChat.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtChat.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtChat.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(150, 150, 150)));
@@ -188,28 +194,30 @@ public class AChat extends javax.swing.JFrame {
             }
         });
 
-        icon.setPic("/Data/Icon/Like.png");
-        icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        icon.setPreferredSize(new java.awt.Dimension(50, 50));
-        icon.addMouseListener(new java.awt.event.MouseAdapter() {
+        iconLike.setPic("/Data/Icon/Like.png");
+        iconLike.setBackground(new java.awt.Color(153, 255, 255));
+        iconLike.setToolTipText("Like Stranger");
+        iconLike.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        iconLike.setPreferredSize(new java.awt.Dimension(50, 50));
+        iconLike.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                iconMousePressed(evt);
+                iconLikeMousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout iconLayout = new javax.swing.GroupLayout(icon);
-        icon.setLayout(iconLayout);
-        iconLayout.setHorizontalGroup(
-            iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout iconLikeLayout = new javax.swing.GroupLayout(iconLike);
+        iconLike.setLayout(iconLikeLayout);
+        iconLikeLayout.setHorizontalGroup(
+            iconLikeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
         );
-        iconLayout.setVerticalGroup(
-            iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        iconLikeLayout.setVerticalGroup(
+            iconLikeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
         );
 
         ChatBoxLayer.setLayer(txtChat, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        ChatBoxLayer.setLayer(icon, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ChatBoxLayer.setLayer(iconLike, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout ChatBoxLayerLayout = new javax.swing.GroupLayout(ChatBoxLayer);
         ChatBoxLayer.setLayout(ChatBoxLayerLayout);
@@ -217,9 +225,9 @@ public class AChat extends javax.swing.JFrame {
             ChatBoxLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ChatBoxLayerLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtChat)
+                .addGap(10, 10, 10)
+                .addComponent(iconLike, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
         ChatBoxLayerLayout.setVerticalGroup(
@@ -227,9 +235,9 @@ public class AChat extends javax.swing.JFrame {
             .addGroup(ChatBoxLayerLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(ChatBoxLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtChat, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                    .addComponent(iconLike, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtChat))
+                .addGap(30, 30, 30))
         );
 
         lblStart.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -237,6 +245,7 @@ public class AChat extends javax.swing.JFrame {
         lblStart.setText("Click the button below to start a new chat !");
 
         btnStart.setText("Start");
+        btnStart.setToolTipText("Start new Conversation");
         btnStart.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnStart.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnStart.setkBorderRadius(20);
@@ -290,7 +299,7 @@ public class AChat extends javax.swing.JFrame {
             AChatLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Scroll)
-            .addComponent(ChatBoxLayer)
+            .addComponent(ChatBoxLayer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(AChatLayerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(ButtonLayer, javax.swing.GroupLayout.Alignment.TRAILING))
         );
@@ -338,12 +347,6 @@ public class AChat extends javax.swing.JFrame {
         new Avatar().setVisible(true);
     }//GEN-LAST:event_AvatarMousePressed
 
-    private void SignOutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignOutMousePressed
-        if(WOptionPaneC(P,"Are you sure you want SignOut ?\nYour Auto SignIn will be deleted.\nAnd you need SignIn manually in the next time.") == JOptionPane.YES_OPTION){
-            SignOut();
-        }
-    }//GEN-LAST:event_SignOutMousePressed
-
     private void EditMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditMousePressed
         Edit frame = new Edit();
         frame.setVisible(true);
@@ -365,71 +368,55 @@ public class AChat extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        Scroll.setVisible(true);
-        icon.setPic("/Data/Icon/Like.png");
+        iconLike.setPic("/Data/Icon/Like.png");
         Chat.removeAll();
-        preHeight = 0; width = 0; line = 0; X = 0; Y = 0;
+        preHeight = 0; width = 0; line = 0; X = 0; Y = 0; PortID = 1024;
         ChatIn();
-        if(selectID(PortID)){
-            System.out.println("Start with role: Client");
-            try {
-                Socket soc = new Socket("127.0.0.1",PortID);
-                ps = new PrintStream(soc.getOutputStream());
-                
-                Thread th = new Thread(new ChatThread(soc){
-                    @Override public void run() {
-                        while (true) {
-                            try {
-                                String s = dis.readLine();
-                                byte[] arr = s.getBytes("ISO-8859-1");
-                                s = new String(arr, "UTF-8");
-                                if(s.equals("!! You like Strangers like you. !!")){addNotifiBox("Stranger like you. !!");}
-                                else{addLeftBox(s);}}
-                            catch (IOException ex) { ChatOut("Stranger has exited the chat !"); break;}}}});
-                th.start();}
-            catch (IOException ex) {  ex.printStackTrace(); }
-        } 
-        else{ new Thread(){@Override public void run() {
-            PopupOn("/Data/Gif/Chat.gif", "Waiting for a Stranger...");
-            System.out.println("Start with role: Server");
-            insertID(PortID);
-            try {
-                ServerSocket sv = new ServerSocket(PortID);
-                Socket soc = sv.accept();
-                PopupOff();
-                ps = new PrintStream(soc.getOutputStream());
-                Thread th = new Thread(new ChatThread(soc){
-                    @Override public void run() {
-                        while (true) {
-                            try {
-                                String s = dis.readLine();
-                                byte[] arr = s.getBytes("ISO-8859-1");
-                                s = new String(arr, "UTF-8");
-                                if(s.equals("!! You like Strangers like you. !!")){addNotifiBox("Stranger like you. !!");}
-                                else{addLeftBox(s);}}
-                            catch (IOException ex) { ChatOut("Stranger has exited the chat !"); break;}}}});
-                th.start();}
-            catch (IOException ex) {ex.printStackTrace();}
-            }}.start();
+        boolean Status = false; 
+        while(true){
+            try{ 
+                IPAddress = InetAddress.getLocalHost().getHostAddress();
+                if(checkID(PortID)){Status = false; break;}
+                else{PortID++;}
+            }
+            catch(RuntimeException e){insertID(PortID, IPAddress); Status = true; break;}
+            catch (UnknownHostException ex){    System.out.println("!!! Error trying to get the IP Address of this device. !!!");}
         }
+        System.out.println("Start at IP: "+IPAddress+"\tPort: "+PortID);
+        if(Status){ startServer(); } 
+        else{ updateID(PortID, false); startClient(); }
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void txtChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChatActionPerformed
-       Chat();
+        String chat = txtChat.getText().trim();
+        if(!chat.equals("")){
+            ps.println(chat);
+            addRightBox(chat);
+            txtChat.setText("");
+        }
     }//GEN-LAST:event_txtChatActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         deleteID(PortID);
+        System.out.println("Delete PortID : "+PortID);
     }//GEN-LAST:event_formWindowClosing
 
-    private void iconMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconMousePressed
+    private void iconLikeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLikeMousePressed
         if(!StranLikeU){
             ps.println("!! You like Strangers like you. !!");
             addNotifiBox("You like Stranger. !!"); 
-            icon.setPic("/Data/Icon/LikeColor.png");
+            iconLike.setPic("/Data/Icon/LikeColor.png");
         }
         StranLikeU = true;
-    }//GEN-LAST:event_iconMousePressed
+    }//GEN-LAST:event_iconLikeMousePressed
+
+    private void icoCancelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icoCancelMousePressed
+        try{
+            if(soc !=null && !soc.isClosed()){
+                if(WOptionPaneC(P, "Are you sure you want to exit the conversation.\nThis can't be undo.\nAnd the entire conversation will be deleted.") == JOptionPane.YES_OPTION){
+                    soc.close();}}}
+        catch(IOException e){  System.out.println("!!! Error trying to cancel Chat Thread. !!!");}
+    }//GEN-LAST:event_icoCancelMousePressed
 
     public static void main(String args[]) {
         try {
@@ -447,11 +434,11 @@ public class AChat extends javax.swing.JFrame {
         });
     }
     
-    private final int PortID = 1234;
+    private int PortID = 1024;  String IPAddress = null;
     public static final User User = selectUS(USERNAME);
     private final JComponent P = super.getRootPane();   //parent component
     private int preHeight = 0, width, line, X, Y;
-    static PrintStream ps;
+    static PrintStream ps; static Thread th; static Socket soc;
     private boolean StranLikeU = false;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -464,40 +451,72 @@ public class AChat extends javax.swing.JFrame {
     private com.AnLa.IcoPanel Edit;
     private javax.swing.JPanel Header;
     private javax.swing.JScrollPane Scroll;
-    private com.AnLa.IcoPanel SignOut;
     private com.AnLa.IcoPanel Toggle;
     private com.k33ptoo.components.KButton btnStart;
-    private com.AnLa.IcoPanel icon;
+    private com.AnLa.IcoPanel icoCancel;
+    private com.AnLa.IcoPanel iconLike;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblStart;
     private javax.swing.JTextField txtChat;
     // End of variables declaration//GEN-END:variables
 
-    private void showTheme(){
+    private void showTheme()                {
         setTheme(Background);
         setTheme(Header);   setTheme(Avatar);   setTheme(lblName);
-        setTheme(Toggle);   setTheme(Edit);     setTheme(SignOut);
-        setTheme(lblStart); setTheme(txtChat);  setTheme(icon);
+        setTheme(Toggle);   setTheme(Edit);     setTheme(icoCancel);
+        setTheme(lblStart); setTheme(txtChat);  setTheme(iconLike); 
         setTheme(Chat);     Scroll.getVerticalScrollBar().setBackground(Color.decode(Theme ? "#363B41" : "#FFFFFF"));
     }
-    private void Chat(){
-        String chat = txtChat.getText();
-        ps.println(chat);
-        addRightBox(chat);
-        txtChat.setText("");
-    }
-    private void ChatIn(){
+    private void ChatIn()                   {
         ButtonLayer.setVisible(false);
         ChatBoxLayer.setVisible(true);
         validate();
         repaint();
     }
-    private void ChatOut(String text){
+    private void ChatOut(String text)       {
         lblStart.setText(text);
         ChatBoxLayer.setVisible(false);
         ButtonLayer.setVisible(true);
         validate();
         repaint();
+    }
+    private Thread creThread(Socket soc)    {
+        addNotifiBox("'Ahihi' to say hello Stranger. Have fun.");
+        return new Thread(new ChatThread(soc){
+            @Override public void run() {
+                while (true) {
+                    try {
+                        String s = br.readLine();
+                        if(s == null){throw new IOException();}
+                        if(s.equals("!! You like Strangers like you. !!")){addNotifiBox("Stranger like you. !!");}
+                        else{   addLeftBox(s);  }
+                    }catch (IOException ex) { 
+                        try{soc.close();}catch(IOException e){}
+                        ChatOut("Stranger has exited the chat !"); StranLikeU = false; break;}}}});
+    }
+    private void startClient()              {
+        System.out.println("Start with role: Client");
+        try {
+            soc = new Socket(selectIP(PortID), PortID);
+            ps = new PrintStream(soc.getOutputStream());
+            th = creThread(soc);
+            th.start(); }
+        catch(IOException ex){}
+    }
+    private void startServer()              {
+        new Thread() {
+            @Override public void run() {
+                PopupOn("/Data/Gif/Chat.gif", "Waiting for a Stranger...");
+                System.out.println("Start with role: Server");
+                try {
+                    ServerSocket sv = new ServerSocket(PortID);
+                    soc = sv.accept();
+                    PopupOff();
+                    ps = new PrintStream(soc.getOutputStream());
+                    th = creThread(soc);
+                    th.start(); }
+                catch(IOException ex){}
+            }}.start();
     }
     private void addRightBox(String text)   {
         com.k33ptoo.components.KGradientPanel cbox = new com.k33ptoo.components.KGradientPanel();
@@ -612,6 +631,9 @@ public class AChat extends javax.swing.JFrame {
         Y = Y + preHeight + 20;
         preHeight = 30;
         Chat.add(Label, new AbsoluteConstraints(0, Y, 485, 30));
+        Rectangle aRect = new Rectangle();
+        aRect.y = Y + 50;
+        Chat.scrollRectToVisible(aRect);
         validate();
         repaint();
     }
@@ -626,13 +648,11 @@ public class AChat extends javax.swing.JFrame {
 
 abstract class ChatThread implements Runnable {
     InputStream in;
-    BufferedInputStream bi;
-    DataInputStream dis;
+    BufferedReader br;
     public ChatThread(Socket client) {
         try {
             in = client.getInputStream();
-            bi = new BufferedInputStream(in);
-            dis = new DataInputStream(bi);
-        } catch (IOException e) {   System.out.println("!!! Error try to create Chat Thread. !!!");}
+            br = new BufferedReader(new InputStreamReader(in));
+        } catch (IOException e) {   System.out.println("!!! Error trying to create Chat Thread. !!!");}
     }
 }

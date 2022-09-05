@@ -1,7 +1,7 @@
 package Frame;
 // Make By Bình An || AnLaVN || KatoVN
 
-import Class.User;
+import ObjectClass.User;
 import static Processing.LData.*;
 import static Processing.DData.*;
 import java.awt.Color;
