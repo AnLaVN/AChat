@@ -13,3 +13,6 @@ Release 1.0:
   + Fix error can write LocalUser.dat at C:\ProgramFile(x86)
   + Ask User before exit Program and delete PortID on Database
   
+Release 1.0.2.1:
+  + Fix error delte PortID when User exit Program
+  + Add forgot password feature.
