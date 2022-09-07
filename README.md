@@ -10,7 +10,7 @@ Release 1.0:
   + Tested data transfer between real machine and virtual machine
   
  Release 1.0.1.1:
-  + Fix error can write LocalUser.dat at C:\ProgramFile(x86)
+  + Fix error can't write LocalUser.dat at C:\ProgramFile(x86)
   + Ask User before exit Program and delete PortID on Database
   
 Release 1.0.2.1:
