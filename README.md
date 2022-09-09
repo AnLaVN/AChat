@@ -16,3 +16,8 @@ Release 1.0:
 Release 1.0.2.1:
   + Fix error delte PortID when User exit Program
   + Add forgot password feature.
+  
+Release 1.0.3.9:
+  + Add Settings feature.
+  + Add Muti-Languages
+  + Add Muti-Theme
