@@ -21,3 +21,8 @@ Release 1.0.3.9:
   + Add Settings feature.
   + Add Muti-Languages
   + Add Muti-Theme
+
+Release 1.0.5.2199:
+  + Fix error can't delete Avatar at "C:\Program Files (x86)"
+  + Add JDK to installer, now User don't need to install JDK before AChat
+  + Add default Music Song to libraries
