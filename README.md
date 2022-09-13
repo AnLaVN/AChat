@@ -1,5 +1,7 @@
 # AChat
 Chat Java-Application
+[Download Portable](https://www.mediafire.com/file/48ak6kzsi0jm7xl/AChat_Portable.exe/file)
+[Download Installer](https://www.mediafire.com/file/1cqqd2slsh2hacc/AChat_Installer.exe/file)
 
 Release 1.0: 
   + Storing User data at Somee.com
@@ -26,3 +28,4 @@ Release 1.0.5.2199:
   + Fix error can't delete Avatar at "C:\Program Files (x86)"
   + Add JDK to installer, now User don't need to install JDK before AChat
   + Add default Music Song to libraries
+  + Change default install location to "C:\AChat"
