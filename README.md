@@ -1,8 +1,7 @@
 # AChat
 Chat Java-Application
 
-[Download Portable](https://www.mediafire.com/file/48ak6kzsi0jm7xl/AChat_Portable.exe/file)
-
+[Download Portable](https://www.mediafire.com/file/48ak6kzsi0jm7xl/AChat_Portable.exe/file).
 [Download Installer](https://www.mediafire.com/file/1cqqd2slsh2hacc/AChat_Installer.exe/file)
 
 Release 1.0: 
