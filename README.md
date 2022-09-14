@@ -29,6 +29,6 @@ Release 1.0.3.9:
 
 Release 1.0.5.2199:
   + Fix error can't delete Avatar at "C:\Program Files (x86)"
-  + Add JDK to installer, now User don't need to install JDK before AChat
+  + Add JDK to Installer and Portable, now User don't need to install JDK before use AChat
   + Add default Music Song to libraries
   + Change default install location to "C:\AChat"
