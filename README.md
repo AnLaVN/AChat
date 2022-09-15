@@ -30,3 +30,6 @@ Release 1.0.5.2199:
   + Add JDK to Installer and Portable, now User don't need to install JDK before use AChat
   + Add default Music Song to libraries
   + Change default install location to "C:\AChat"
+
+Release 1.0.6.1116:
+  + Fix error duplicated frame
