@@ -1,7 +1,7 @@
 # AChat
 Chat Java-Application
 
-[Download](https://drive.google.com/drive/folders/1jGPvZ3_o8SyqcuqnCMwrM-uvWS_-vudR?usp=sharing)
+[Download](https://drive.google.com/drive/folders/1jGPvZ3_o8SyqcuqnCMwrM-uvWS_-vudR?usp=sharing) (Size ~ 200MB)
 
 
 Release 1.0: 
