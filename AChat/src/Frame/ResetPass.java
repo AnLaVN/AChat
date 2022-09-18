@@ -557,7 +557,7 @@ public class ResetPass extends javax.swing.JFrame {
                 p.put("mail.smtp.host", "smtp.gmail.com"); 
                 p.put("mail.smtp.port", 587);
 
-                final String Email= "anldbps21776@fpt.edu.vn", Pass = "booshgngrncfvwhl";
+                final String Email= "EMAILADDRESS", Pass = "FUCKYOUHACKER";
 
                 Session s = Session.getInstance(p, new javax.mail.Authenticator() {
                     @Override protected PasswordAuthentication getPasswordAuthentication() {
