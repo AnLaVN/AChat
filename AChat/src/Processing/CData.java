@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class CData {
     private static final Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-            "cloud_name", "anlavn",
-            "api_key", "985969511487375",
-            "api_secret", "1zJ0Tonfsk5m3-asd9PotnkhiTc"     ));
+            "cloud_name", "myclound",
+            "api_key", "124524",
+            "api_secret", "123456789asfdvb134"     ));
     
     public static String uploadIMG(String filePath){
         try {
