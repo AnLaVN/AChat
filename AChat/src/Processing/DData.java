@@ -6,7 +6,6 @@ import static Processing.LData.USERNAME;
 import java.sql.*;
 
 public class DData {
-//    private static final String URL = "jdbc:sqlserver://localhost:1433;DatabaseName=AChatDB;encrypt=true;trustServerCertificate=true", USERNAMEDB = "sa", PASSWORDDB = "";
     private static final String URL = "jdbc:sqlserver://databseurl", USERNAMEDB = "loginusernaem", PASSWORDDB = "12345678";
     public static Connection con = null;
     //Set connect query database
