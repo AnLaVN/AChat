@@ -3,7 +3,7 @@ Chat Java-Application
 
 [Download](https://drive.google.com/drive/folders/1jGPvZ3_o8SyqcuqnCMwrM-uvWS_-vudR?usp=sharing) (Size ~ 200MB)
 
-Now the Reset Password feature has been locked,(can't be use anymore) because someone tried to use my account to spam mail, sorry...:(((
+Now the Reset Password feature has been remove,(can't be use anymore) because someone tried to use my account to spam mail, sorry everyone :(((
 
 Release 1.0: 
   + Storing User data at Somee.com
