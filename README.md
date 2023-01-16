@@ -26,5 +26,9 @@
 >
 > The app is inspired by [cvnl.app](cvnl.app), thanks for giving me a great time and great ideas.
 
-# 2. Download / Tải xuống
+# 2. Note / Lưu ý
+### Tiếng Việt: Cơ sở dữ liệu của AChat sẽ được duy trì, tối thiểu đến khi tôi tốt nghiệp, tháng 12 năm 2023.
+### English: AChat database will be maintained, at least until I graduate, December 2023.
+
+# 3. Download / Tải xuống
 * [Releases Version](https://github.com/AnLaVN/AChat/releases)
