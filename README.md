@@ -9,7 +9,7 @@
 
 # 1. Overview / Tổng quan
 ### Tiếng Việt
-> AChat là dự án cá nhân đầu tiên của tôi, được viết sau khi học xong Java2 tại FPoly, nhằm kiểm tra kiến thức của bản thân cũng như khả năng học hỏi kiến thức mới trên intenet, đây cũng là nền tảng cho các dự án sau này như [AL-Library](https://github.com/AnLaVN/AL-Library), [EOA](https://github.com/AnLaVN/EOA),...
+> AChat là dự án cá nhân đầu tiên của tôi, được viết sau khi học xong Java 3 tại FPoly, nhằm kiểm tra kiến thức của bản thân cũng như khả năng học hỏi kiến thức mới trên intenet, đây cũng là nền tảng cho các dự án sau này như [AL-Library](https://github.com/AnLaVN/AL-Library), [EOA](https://github.com/AnLaVN/EOA),...
 >
 > Về cơ bản AChat là một ứng dụng trò chuyện với người lạ, có nghĩa là danh tính của bạn và cả đối phương đều được giấu kín. Bạn không cần sợ bị lộ thông tin, trừ khi bạn cung cấp cho người lạ. Ứng dụng cũng không lưu trữ tin nhắn của bạn nên bạn hoàn toàn yên tâm về quyền riêng tư, chính vì vậy nếu bạn thoát ứng dụng hoặc kết thức cuộc trò chuyện, toàn bộ tin nhắn sẽ mất, hãy cẩn thận.
 >
@@ -18,7 +18,7 @@
 > Ứng dụng được lấy cảm hứng từ [cvnl.app](cvnl.app), cảm ơn vì đã cho tôi khoảng thời gian tuyệt vời và những ý tưởng tuyệt vời.
 > 
 ### English
-> AChat is my first personal project, written after finishing Java2 at FPoly, to test my knowledge as well as my ability to learn new knowledge on the internet, this is also the foundation for projects later like [AL-Library](https://github.com/AnLaVN/AL-Library), [EOA](https://github.com/AnLaVN/EOA),...
+> AChat is my first personal project, written after finishing Java 3 at FPoly, to test my knowledge as well as my ability to learn new knowledge on the internet, this is also the foundation for projects later like [AL-Library](https://github.com/AnLaVN/AL-Library), [EOA](https://github.com/AnLaVN/EOA),...
 >
 > Basically AChat is a chat application with strangers, which means that both your identity and the other person's identity are hidden. You don't need to be afraid of your information being leaked, unless you give it to strangers. The app also doesn't store your messages so you can rest assured about your privacy, so if you exit the app or end the conversation, all messages will be lost, be careful.
 >
