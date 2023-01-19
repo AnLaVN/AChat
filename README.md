@@ -27,9 +27,9 @@
 > The app is inspired by [cvnl.app](cvnl.app), thanks for giving me a great time and great ideas.
 
 # 2. Note / Lưu ý
-> Tiếng Việt: Cơ sở dữ liệu của AChat sẽ được duy trì, tối thiểu đến khi tôi tốt nghiệp, tháng 12 năm 2023.
+> Tiếng Việt: Dịch vụ AChat đã ngưng hoạt động kể từ 19/01/2023. Bao gồm cơ sở dữ liệu và dịch vụ email.
 
-> English: AChat database will be maintained, at least until I graduate, December 2023.
+> English: AChat service has stopped working since January 19, 2023. Includes database and email service.
 
 # 3. Download / Tải xuống
 * [Releases Version](https://github.com/AnLaVN/AChat/releases)
