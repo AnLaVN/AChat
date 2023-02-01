@@ -26,5 +26,5 @@
 >
 > The app is inspired by [cvnl.app](cvnl.app), thanks for giving me a great time and great ideas.
 
-# 3. Download / Tải xuống
+# 2. Download / Tải xuống
 * [Releases Version](https://github.com/AnLaVN/AChat/releases)
