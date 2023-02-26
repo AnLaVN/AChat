@@ -22,7 +22,7 @@
 >
 > Basically AChat is a chat application with strangers, which means that both your identity and the other person's identity are hidden. You don't need to be afraid of your information being leaked, unless you give it to strangers. The app also doesn't store your messages so you can rest assured about your privacy, so if you exit the app or end the conversation, all messages will be lost, be careful.
 >
-> The application uses sockets in Java to communicate over a local area network (LAN). Added security features include SHA256 encryption of usernames and passwords, a cryptographic hash function designed by the US National Security Agency and first published in 2001. Additionally. also supports Light and Dark interface, language packs include Vietnamese and English, with default settings being Dark theme and Vietnamese language.
+> The application uses sockets in Java to communicate over a local area network (LAN). Added security features include SHA256 encryption of usernames and passwords, a cryptographic hash function designed by the US National Security Agency and first published in 2001. Additionally also supports Light and Dark interface, language packs include Vietnamese and English, with default settings being Dark theme and Vietnamese language.
 >
 > The app is inspired by [cvnl.app](cvnl.app), thanks for giving me a great time and great ideas.
 
