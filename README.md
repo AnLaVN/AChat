@@ -26,5 +26,12 @@
 >
 > The app is inspired by [cvnl.app](cvnl.app), thanks for giving me a great time and great ideas.
 
-# 2. Download / Tải xuống
+# 2. Algorithm Flowchart / Lưu đồ thuật toán
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/90229487/221405453-1695c473-b645-462e-8a75-3dda46cb9bdd.png">
+  <br><br>
+  <img src="https://user-images.githubusercontent.com/90229487/221405466-97ffb279-bfcd-4949-b1be-e44272fd4320.png">
+</p>
+
+# 3. Download / Tải xuống
 * [Releases Version](https://github.com/AnLaVN/AChat/releases)
