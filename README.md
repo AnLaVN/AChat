@@ -28,9 +28,9 @@
 
 # 2. Algorithm Flowchart / Lưu đồ thuật toán
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/90229487/221405453-1695c473-b645-462e-8a75-3dda46cb9bdd.png">
+  <img src="https://user-images.githubusercontent.com/90229487/221405757-ea064e86-45f4-474a-80ae-deeadaf14f80.png">
   <br><br>
-  <img src="https://user-images.githubusercontent.com/90229487/221405466-97ffb279-bfcd-4949-b1be-e44272fd4320.png">
+  <img src="https://user-images.githubusercontent.com/90229487/221405752-b6cca033-855c-4e92-895b-a302b4f78499.png">
 </p>
 
 # 3. Download / Tải xuống
