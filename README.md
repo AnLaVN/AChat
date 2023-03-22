@@ -5,6 +5,13 @@
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/github/license/exadel-inc/CompreFace" alt="GitHub license"/></a>
   <a href="https://cloudinary.com/"><img src="https://img.shields.io/badge/Cloud-Cloudinary-blue"></a>
   <a href="https://www.radmin-vpn.com"><img src="https://img.shields.io/badge/Network-Radmin--VPN-blue"></a>
+  <br><br>
+  <img src="https://img.shields.io/github/repo-size/AnLaVN/AChat">
+  <img src="https://img.shields.io/github/languages/code-size/AnLaVN/AChat">
+  <img src="https://img.shields.io/github/downloads/AnLaVN/AChat/total">
+  <a href="https://github.com/AnLaVN/AChat/commits/Releases"><img src="https://img.shields.io/github/commit-activity/w/AnLaVN/AChat"></a>
+  <a href="https://github.com/AnLaVN/AChat/commits/Releases"><img src="https://img.shields.io/github/last-commit/AnLaVN/AChat"></a>
+  <a href="https://github.com/AnLaVN/AChat/releases"><img src="https://img.shields.io/github/release-date/AnLaVN/AChat"></a>
 </p>
 
 
