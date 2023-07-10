@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+
+	<!-- Form thay đổi thông tin cá nhân  -->
+	<div class="row m-0 mt-3">
+		<label class="form-label text-center h5">Giới tính</label>
+		<div class="col">
+			<label class="form-label" for="cboGender">Của bạn</label>
+			<select class="form-select" id="cboGender" required 
+			ng-model="MyAccount.gender" ng-change="UserInfor('gender', MyAccount.gender)">
+				<option value="false">Nam</option>
+				<option value="true">Nữ</option>
+				<option value="null">Bí mật</option>
+			</select>
+			<div class="form-text">Giới tính của bạn giúp đối phương tìm kiếm dễ dàng hơn.</div>
+		</div>
+		<div class="col">
+			<label class="form-label" for="cboExcited_Gender">Đối phương</label>
+			<select class="form-select" id="cboExcited_Gender" required 
+			ng-model="MyAccount.excitedGender"  ng-change="UserInfor('EGender', MyAccount.excitedGender)">
+				<option value="false">Nam</option>
+				<option value="true">Nữ</option>
+				<option value="null">Bất kì</option>
+			</select>
+			<div class="form-text">Giới tính của đối phương mà bạn mong muốn tìm kiếm.</div>
+		</div>
+	</div>
+
+	
+	<div class="row m-0 mt-3">
+		<label class="form-label text-center h5">Độ tuổi</label>
+		<div class="col">
+			<label class="form-label" for="cboAge">Của bạn</label>
+			<select class="form-select" id="cboAge" required 
+			ng-model="MyAccount.age" ng-change="UserInfor('age', MyAccount.age)">
+				<option value="false">Còn đi học</option>
+				<option value="true">Đã đi làm</option>
+				<option value="null">Bí mật</option>
+			</select>
+			<div class="form-text">Độ tuổi của bạn giúp đối phương xưng hô dễ dàng hơn.</div>
+		</div>
+		<div class="col">
+			<label class="form-label" for="cboExcited_Age">Đối phương</label>
+			<select class="form-select" id="cboExcited_Age" required 
+			ng-model="MyAccount.excitedAge" ng-change="UserInfor('EAge', MyAccount.excitedAge)">
+				<option value="false">Còn đi học</option>
+				<option value="true">Đã đi làm</option>
+				<option value="null">Bất kì</option>
+			</select>
+			<div class="form-text">Độ tuổi của đối phương mà bạn mong muốn tìm kiếm.</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+
+	<!-- Các tin nhắn trong đoạn chat, bao gồm tin nhắn, hình ảnh của người gửi, người nhận, tin nhắn chờ. -->
+	<div class="overflow-y-auto custom-scroll justify-content-center row m-0 p-0" style="height: 84vh;" scroll-glue="$parent.isScrollBottom">
+		<div class="small text-muted text-center my-5">
+			Chào mừng các bạn đã đến với AChat, hãy cư xử tốt với nhau... &lt3
+		</div>
+
+		<div class="text-center" ng-show="viewFriend.ListMessages == undefined">
+			<div class="spinner-border" role="status" style="width: 4rem; height: 4rem;" ng-show="!isLoadedFail"></div>
+			<i class="bi bi-arrow-clockwise fw-blod c-pointer m-0 p-0 lh-1" style="font-size: 5.12rem;" ng-show="isLoadedFail"
+			ng-click="loadMessages(viewFriend.link); $parent.isLoadedFail = false"></i>
+		</div>
+		
+		<div ng-repeat="Message in viewFriend.ListMessages" class="col-12 col-xl-9 m-0 p-0">
+
+			<!-- Tin nhắn, hình ảnh của đối phương. -->
+			<div class="d-flex flex-row justify-content-start w-85" ng-if="Message.Sender != MyAccount.userId">
+				<img ng-src="{{viewFriend.avatar}}" style="width: 2.3em; height: 100%;" class="mt-auto mb-4 ms-2 pb-3 d-none d-sm-block">
+				<div>
+					<p class="small m-0 ms-2 rounded-3 text-white text-break{{Message.Content?' bg-secondary p-2':''}}">
+						{{Message.Content}}
+						<span class="spinner-border text-primary m-auto d-flex" role="status" ng-show="Message.Image && !Load"></span>
+						<img ng-src="https://res.cloudinary.com/anlavn/image/upload/{{Message.Image}}"
+							class="img-fluid rounded" ng-show="Message.Image && Load" imageonload="Load = true">
+					</p>
+					<p class="small ms-3 rounded-3 text-muted float-end">
+						{{Message.Time.toDate() | date : 'HH:mm | MMM dd' : 'GMT+7'}}
+					</p>
+				</div>
+			</div>
+
+			<!-- Tin nhắn, hình ảnh của người dùng. -->
+			<div class="d-flex flex-row justify-content-end w-85 ms-auto" ng-if="Message.Sender == MyAccount.userId" ng-init="Load">
+				<div>
+					<p class="small m-0 me-2 rounded-3 text-white text-break{{Message.Content?' bg-primary p-2':''}}">
+						{{Message.Content}}
+						<span class="spinner-border text-primary m-auto d-flex" role="status" ng-show="Message.Image && !Load"></span>
+						<img ng-src="https://res.cloudinary.com/anlavn/image/upload/{{Message.Image}}"
+							class="img-fluid rounded" ng-show="Message.Image && Load" imageonload="Load = true">
+					</p>
+					<p class="small me-3 rounded-3 text-muted">
+						{{Message.Time.toDate() | date : 'HH:mm | MMM dd' : 'GMT+7'}}
+					</p>
+				</div>
+				<img ng-src="{{GenAvatar(MyAccount)}}" style="width: 45px; height: 100%;" class="mt-auto mb-4 me-2 pb-3 d-none d-sm-block">
+			</div>
+
+		</div>
+
+
+		<!-- Tin nhắn chờ.  -->
+		<div class="col-12 col-xl-9">
+			<!-- <div class="d-flex flex-row justify-content-start w-85 mb-5" ng-show="$parent.TypingText" style="width: 85%;">
+				<span class="spinner-grow" role="status"></span>
+				<p class="small p-2 ms-3 mb-1 rounded-3 bg-secondary text-white">Đang soạn tin nhắn ...</p>
+			</div> -->
+			<div class="d-flex flex-row justify-content-end w-85 ms-auto mb-5" ng-show="$parent.TypingText" style="width: 85%;">
+				<p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">Đang soạn tin nhắn ...</p>
+				<span class="spinner-grow" role="status"></span>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+	
+
+	<!-- Menu chức năng, Tanh tìm kiếm.  -->
+	<div class="d-flex py-2">
+		<!-- Menu xổ xuống -->
+		<div class="dropdown">
+			<!-- Icon menu  -->
+			<i class="bi bi-list me-2 fw-bolder fs-3 c-pointer" data-bs-toggle="dropdown" data-bs-auto-close="true" ng-show="TabIndex==0"></i>
+			<!-- Icon quay về khi click vào item menu -->
+			<i class="bi bi-arrow-left me-2 text-primary fw-bolder fs-3 c-pointer" ng-click="$parent.TabIndex=0" ng-show="TabIndex!=0"></i>
+			<!-- Menu xổ xuống khi lcick vào Icon menu -->
+			<ul class="dropdown-menu">
+				<button class="dropdown-item d-flex" ng-click="ChangeTheme()" data-bs-toggle="tooltip" data-bs-title="Tuỳ chỉnh giao diện">
+					{{Theme == 'dark' ? 'Hắc' : 'Bạch'}} diện <i class="bi bi-{{Theme=='dark'?'moon-stars':'sun'}} ms-auto"></i>
+				</button>
+				<button class="dropdown-item d-flex" ng-click="$parent.TabIndex=1" data-bs-toggle="tooltip" data-bs-title="Cập nhật thông tin cá nhân">
+					Thông tin <i class="bi bi-person-hearts ms-auto"></i>
+				</button>
+				<button class="dropdown-item d-flex" ng-click="$parent.TabIndex=2" data-bs-toggle="tooltip" data-bs-title="Cập nhật thông tin tài khoản">
+					Tài khoản <i class="bi bi-person-lock ms-auto"></i>
+				</button>
+				<button class="dropdown-item d-flex" ng-click="$parent.TabIndex=3" data-bs-toggle="tooltip" data-bs-title="Trải nghiệm cao cấp hơn">
+					Nâng cấp <i class="bi bi-cash-coin ms-auto"></i>
+				</button>
+				<button class="dropdown-item d-flex text-danger" ng-click="SignOut()" data-bs-toggle="tooltip" data-bs-title="Đăng xuất khỏi thiết bị này">
+					Đăng xuất <i class="bi bi-box-arrow-right ms-auto"></i>
+				</button>
+			</ul>
+		</div>
+
+		<!-- Thanh tìm kiếm -->
+		<div class="input-group rounded">
+			<input type="search" class="form-control" placeholder="Search" />
+			<button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

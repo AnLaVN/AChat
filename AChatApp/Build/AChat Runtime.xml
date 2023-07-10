@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>console</headerType>
+  <jar>C:\Users\Admin\Documents\AChat\dist\AChat.jar</jar>
+  <outfile>C:\Users\Admin\Documents\AChat\dist\AChat.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>https://www.oracle.com/java/technologies/downloads/#jdk18-windows</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>C:\Users\Admin\Documents\AChat\Logo.ico</icon>
+  <jre>
+    <path>jdk-18.0.2.1</path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion>18</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.0.11.1320</fileVersion>
+    <txtFileVersion>1.0.11.1320</txtFileVersion>
+    <fileDescription>AChat Java Application</fileDescription>
+    <copyright>Bình An - AnLaVN</copyright>
+    <productVersion>1.0.11.1320</productVersion>
+    <txtProductVersion>1.0.11.1320</txtProductVersion>
+    <productName>AChat</productName>
+    <companyName>AnLaVN</companyName>
+    <internalName>AChat</internalName>
+    <originalFilename>AChat.exe</originalFilename>
+    <trademarks></trademarks>
+    <language>ENGLISH_US</language>
+  </versionInfo>
+  <messages>
+    <startupErr>An error occurred while starting the application.</startupErr>
+    <bundledJreErr>This application requires a Java Runtime Environment.</bundledJreErr>
+    <jreVersionErr>This application requires a Java Runtime Environment</jreVersionErr>
+    <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
+    <instanceAlreadyExistsMsg>An application instance is already running.</instanceAlreadyExistsMsg>
+  </messages>
+</launch4jConfig>

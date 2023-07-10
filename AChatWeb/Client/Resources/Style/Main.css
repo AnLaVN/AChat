@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500');
+
+@media (min-width: 320px) {
+	.d-xs-block {
+		display: block !important;
+	}
+}
+
+#AChatFrame .form-control:focus {
+	box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.c-pointer{
+	cursor: pointer;
+}
+
+.c-notAllowed{
+	cursor: not-allowed;
+}
+.mh-inherit{
+	max-height: inherit;
+}
+
+html, body{
+	font-family: 'Dosis', sans-serif;
+}
+
+.w-85 {
+	width: 85%;
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+
+	<!-- Thanh chức năng, hiển thị Avatar, Name, Report, Exit.  -->
+	<div class="d-flex justify-content-start align-items-center position-relative shadown-Down">
+		<i class="bi bi-arrow-left ms-2 text-primary fw-blod fs-3 d-block d-md-none c-pointer" ng-click="clearView()"></i>
+		<img ng-src="{{viewFriend.avatar}}" style="width: 45px; height: 100%;" class="ms-1 p-1">
+		<div class="h4 text-primary m-0 ms-2 p-0">{{viewFriend.fullname}}</div>
+		<div class="m-0 p-0 ms-auto">
+			<i class="bi bi-exclamation-octagon me-2 text-danger fw-blod fs-4 c-pointer"
+				data-bs-toggle="tooltip" data-bs-title="Báo cáo cuộc trò chuyện"></i>
+			<i class="bi bi-box-arrow-right me-2 text-primary fw-blod fs-3 c-pointer" ng-click="removeMessages(false,null,null)"
+				data-bs-toggle="tooltip" data-bs-title="Thoát khỏi cuộc trò chuyện"></i>
+		</div>
+	</div>
+
+
+	
+</body>
+</html>

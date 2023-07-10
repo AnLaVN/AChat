@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+
+	<!-- Giao diện chính của web -->
+	<div class="row m-0 p-0" ng-init="Authen(); TabIndex = 0; TypingText = '';" ng-show="MyAccount.listChats">
+
+		<!-- Left Box -->
+		<div class="col-md-5 col-lg-4 col-xl-3 px-2 overflow-y-auto custom-scroll vh-100 {{viewFriend.chatID?'d-none':''}} d-md-block"
+		style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+			<!-- Hiển thị menu và thanh tìm kiếm -->
+			<div ng-include="'Resources/Layout/LeftBox_NavBar.html'" class="sticky-top bg-body"></div>
+			<!-- Hiển thị danh sách bạn bè theo mặc định -->
+			<div ng-include="'Resources/Layout/LeftBox_Friends.html'" ng-show="TabIndex==0"></div>
+			<!-- Hiển thị thông tin cá nhân trong menu -->
+			<div ng-include="'Resources/Layout/MenuBox_Infor.html'" ng-show="TabIndex==1"></div>
+			<!-- Hiển thị thông tin tài khoản trong menu -->
+			<div ng-include="'Resources/Layout/MenuBox_Acc.html'" ng-show="TabIndex==2"></div>
+		</div>
+
+		<!-- Chat Box -->
+		<div class="col-md-7 col-lg-8 col-xl-9 {{viewFriend.chatID?'':'d-none'}} d-md-block p-0" ng-init="isScrollBottom = true">
+			<!-- Phần sẽ hiển thị khi đã chọn 1 đoạn chat -->
+			<div class="container-fluid d-flex flex-column vh-100" ng-show="viewFriend.chatID">
+				<div ng-include="'Resources/Layout/ChatBox_NavBar.html'" onload="loadTooltips();"></div>
+				<div class="row flex-grow-1"><div ng-include="'Resources/Layout/ChatBox_Messages.html'" class="m-0 p-0"></div></div>
+				<div ng-include="'Resources/Layout/ChatBox_TypBar.html'" class="shadown-Top" onload="loadTooltips(); LoadCoudinary();"></div>
+			</div>
+
+			<!-- Phần sẽ hiển thị khi chưa chọn 1 đoạn chat -->
+			<div ng-hide="viewFriend.chatID">
+				<h5>Hơn cả vì sao lấp lánh...</h5>
+			</div>
+		</div>
+
+	</div>
+	<!-- Kết thúc giao diện chính của web -->
+
+
+
+</body>
+</html>
