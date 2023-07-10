@@ -13,4 +13,4 @@
   <a href="https://github.com/AnLaVN/AChat_Spring/releases"><img src="https://img.shields.io/github/release-date/AnLaVN/AChat_Spring"></a>
 </p>
 
-***This not ready to use full feature right now, im try to make at soon at possible. If you like to test or grow it -> [contact me](https://github.com/AnLaVN)***
+***Now AChat change to webapp base, but it not ready to use full feature right now, im try to make at soon at possible. If you like to test or grow it -> [contact me](https://github.com/AnLaVN)***
