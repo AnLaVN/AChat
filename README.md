@@ -46,4 +46,4 @@
 </p>
 
 # 3. Download / Tải xuống
-* [Releases Version](https://github.com/AnLaVN/AChat/releases)
+* [Releases Version](https://github.com/AnLaVN/AChat/releases/tag/v1.0.12)
