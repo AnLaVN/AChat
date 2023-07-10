@@ -20,7 +20,7 @@ import com.AnLa.Tools.Cloud;
 
 @RestController
 @RequestMapping("/Chats")
-@CrossOrigin(origins = {"https://127.0.0.1:5500", "https://192.168.1.12:5500"})
+@CrossOrigin(origins = {"https://127.0.0.1:5500", "https://192.168.1.12:5500", "https://achat.pages.dev"})
 public class Conversations {
 	@Autowired
 	ChatDAO chatDAO;
@@ -44,7 +44,6 @@ public class Conversations {
 		try {
 			// Thông báo Log khi có requset tới
 			Log.add("Try to delete Chat: " + pChatID);
-			System.out.println(pListImage.toString());
 			Cloud.destroyFromList(pListImage);
 			chatDAO.deleteById(pChatID);
 			return ResponseEntity.ok(true);

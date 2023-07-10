@@ -18,7 +18,7 @@ import com.AnLa.HASH.BCrypt;
 
 @RestController
 @RequestMapping("/Account")
-@CrossOrigin(origins = {"https://127.0.0.1:5500", "https://192.168.1.12:5500"})
+@CrossOrigin(origins = {"https://127.0.0.1:5500", "https://192.168.1.12:5500", "https://achat.pages.dev"})
 public class Account {
 	@Autowired
 	UserDAO userDAO;

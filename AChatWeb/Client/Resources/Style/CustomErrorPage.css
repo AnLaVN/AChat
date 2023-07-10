@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500');
-/* Tuỳ chỉnh giao diện trang báo lỗi */
-
 
 @-moz-keyframes rocket-movement { 100% {-moz-transform: translate(1200px,-600px);} }
 @-webkit-keyframes rocket-movement {100% {-webkit-transform: translate(1200px,-600px); } }
@@ -42,7 +40,6 @@
 }
 
 .spin-earth-on-hover{
-	
 	transition: ease 200s !important;
 	transform: rotate(-3600deg) !important;
 }
@@ -160,7 +157,7 @@ li a:hover {
 }
 
 .central-body{
-/*    width: 100%;*/
+   /* width: 100%; */
 	padding: 17% 5% 10% 5%;
 	text-align: center;
 }
@@ -184,17 +181,15 @@ li a:hover {
 	top: 20%;
 	left: 15%;
 	z-index: 90;
-/*    animation: spin-earth 100s infinite linear both;*/
+	animation: spin-earth 100s infinite linear both;
 }
 
 .object_moon{
 	position: absolute;
 	top: 12%;
 	left: 25%;
-/*
-	transform: rotate(0deg);
+	transform: rotate(00deg);
 	transition: transform ease-in 99999999999s;
-*/
 }
 
 .object_astronaut{
