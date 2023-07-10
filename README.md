@@ -1,6 +1,6 @@
 <h1 align="center">AChat Spring or AChat</h1>
 <p align="center">
-  <img src="https://github.com/AnLaVN/AChat/blob/WebClient/Resources/Images/Logo.png" width = "50%">
+  <img src="https://raw.githubusercontent.com/AnLaVN/AChat/WebClient/Resources/Images/Logo.png" width = "50%">
   <br><br>
   <a href="https://github.com/AnLaVN/AChat/blob/Releases/LICENSE.md"><img src="https://img.shields.io/github/license/AnLaVN/AChat" alt="GitHub license"/></a>
   <a href="https://cloudinary.com/"><img src="https://img.shields.io/badge/Cloud-Cloudinary-blue"></a>
